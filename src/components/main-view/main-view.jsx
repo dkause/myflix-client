@@ -30,7 +30,7 @@ export const MainView = () => {
 
       Genre: "Fantasy",
 
-      Director: { Name: "George Lucas", Bio: " George Lucas is an American director, producer, and screenwriter.", Birth: "1944", Death: false },
+      Director: "George Lucas",
 
       ImagePath: "https://placehold.co/600x400",
 
