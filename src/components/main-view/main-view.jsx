@@ -13,25 +13,19 @@ export const MainView = () => {
 
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.map((movie) => {
+        console.log(data);
+        const moviesFromApi = data.map((singleMovie) => {
           return {
-            _id: movie._id,
-            Title: movie.Title,
-            ImagePath: movie.ImagePath,
-            Description: movie.Description,
-            Genre: {
-              Name: movie.Genre.Name
-            },
-            Director: {
-              Name: movie.Director.name
-            },
-            Featured: movie.Featured
+            _id: singleMovie._id,
+            Title: singleMovie.Title,
+            Description: singleMovie.Description,
+            Genre: singleMovie.Genre,
+            Director: singleMovie.Director,
+            ImagePath: singleMovie.ImagePath,
+            Featured: singleMovie.Featured,
           };
-        });
-
-
+          });
         setMovies(moviesFromApi);
-
       });
   }, []);
 

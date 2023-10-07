@@ -27178,19 +27178,16 @@ const MainView = ()=>{
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://movie-api-5rhq.onrender.com/movies").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.map((movie)=>{
+            console.log(data);
+            const moviesFromApi = data.map((singleMovie)=>{
                 return {
-                    _id: movie._id,
-                    Title: movie.Title,
-                    ImagePath: movie.ImagePath,
-                    Description: movie.Description,
-                    Genre: {
-                        Name: movie.Genre.Name
-                    },
-                    Director: {
-                        Name: movie.Director.name
-                    },
-                    Featured: movie.Featured
+                    _id: singleMovie._id,
+                    Title: singleMovie.Title,
+                    Description: singleMovie.Description,
+                    Genre: singleMovie.Genre,
+                    Director: singleMovie.Director,
+                    ImagePath: singleMovie.ImagePath,
+                    Featured: singleMovie.Featured
                 };
             });
             setMovies(moviesFromApi);
@@ -27201,14 +27198,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 40,
+        lineNumber: 34,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 48,
+        lineNumber: 42,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27219,12 +27216,12 @@ const MainView = ()=>{
                 }
             }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 55,
+                lineNumber: 49,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 52,
+        lineNumber: 46,
         columnNumber: 5
     }, undefined);
 };
@@ -27256,6 +27253,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
         movie,
         onMovieClick
     });
+    if (!movie) return null; // or some other fallback UI
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         onClick: ()=>{
             onMovieClick(movie);
@@ -27263,7 +27261,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
         children: movie.Title
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 6,
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 };
@@ -27271,7 +27269,7 @@ _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         Title: (0, _propTypesDefault.default).string.isRequired
-    }).isRequired,
+    }),
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
