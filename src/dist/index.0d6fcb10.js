@@ -27179,18 +27179,7 @@ const MainView = ()=>{
     (0, _react.useEffect)(()=>{
         fetch("https://movie-api-5rhq.onrender.com/movies").then((response)=>response.json()).then((data)=>{
             console.log(data);
-            const moviesFromApi = data.map((singleMovie)=>{
-                return {
-                    _id: singleMovie._id,
-                    Title: singleMovie.Title,
-                    Description: singleMovie.Description,
-                    Genre: singleMovie.Genre,
-                    Director: singleMovie.Director,
-                    ImagePath: singleMovie.ImagePath,
-                    Featured: singleMovie.Featured
-                };
-            });
-            setMovies(moviesFromApi);
+            setMovies(data);
         });
     }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27198,14 +27187,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 34,
+        lineNumber: 23,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 31,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27216,12 +27205,12 @@ const MainView = ()=>{
                 }
             }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 49,
+                lineNumber: 38,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 46,
+        lineNumber: 35,
         columnNumber: 5
     }, undefined);
 };
@@ -28283,7 +28272,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Genre.name
+                        children: movie.Genre.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 22,
@@ -28305,7 +28294,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Director.name
+                        children: movie.Director.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 26,
@@ -28339,10 +28328,14 @@ MovieView.propTypes = {
         Title: (0, _propTypesDefault.default).string.isRequired,
         Description: (0, _propTypesDefault.default).string.isRequired,
         Genre: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Description: (0, _propTypesDefault.default).string.isRequired
         }),
         Director: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Bio: (0, _propTypesDefault.default).string.isRequired,
+            Birth: (0, _propTypesDefault.default).string.isRequired,
+            Death: (0, _propTypesDefault.default).string.isRequired
         }),
         Featured: (0, _propTypesDefault.default).bool.isRequired
     }).isRequired,

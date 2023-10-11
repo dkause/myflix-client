@@ -14,21 +14,10 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        const moviesFromApi = data.map((singleMovie) => {
-          return {
-            _id: singleMovie._id,
-            Title: singleMovie.Title,
-            Description: singleMovie.Description,
-            Genre: singleMovie.Genre,
-            Director: singleMovie.Director,
-            ImagePath: singleMovie.ImagePath,
-            Featured: singleMovie.Featured,
-          };
-          });
-        setMovies(moviesFromApi);
+         setMovies(data);
       });
   }, []);
-
+  
   if (selectedMovie) {
     return (
       <MovieView
