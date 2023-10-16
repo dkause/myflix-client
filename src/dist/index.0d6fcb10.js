@@ -28439,7 +28439,7 @@ const LoginView = ({ onLoggedIn })=>{
             console.log("Login data: ", data);
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user)); // Saves in local browser storage
-                localStorage.setItem("token", JSON.stringify(data.token));
+                localStorage.setItem("token", data.token);
                 onLoggedIn(data.user, data.token); // Passes user and token via onLoggedIn to Mainview
             } else alert("No User found with name: ", data.user);
         }).catch((e)=>{
