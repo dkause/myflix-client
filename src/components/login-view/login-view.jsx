@@ -16,8 +16,6 @@ export const LoginView = ({ onLoggedIn }) => {
             secret: password
         };
 
-        // Connect to Openlibrary
-
         fetch("https://movie-api-5rhq.onrender.com/users", { // TODO Replace with render/users "https://movie-api-5rhq.onrender.com/users"
             method: "POST",
             headers: {
@@ -27,14 +25,14 @@ export const LoginView = ({ onLoggedIn }) => {
         })
             .then((response) => response.json()) // Transforms response into json object  to extract teh token
             .then((data) => {
-                console.log("Login data: ",data)
+                console.log("Login data: ",data);
                 if (data.user) {
                     localStorage.setItem("user", JSON.stringify(data.user)); // Saves in local browser storage
                     localStorage.setItem("token", (data.token));
 
                     onLoggedIn(data.user, data.token); // Passes user and token via onLoggedIn to Mainview
                 } else {
-                    alert("No User found with name: ", data.user);
+                    alert("No User found.");
                 }
             })
             .catch((e) => {
