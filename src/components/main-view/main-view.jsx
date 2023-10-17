@@ -8,11 +8,12 @@ export const MainView = () => {
   // State Variables, which are dynamic
   const storedUser = JSON.parse(localStorage.getItem('user'))
   const storedToken = localStorage.getItem('token')
-  const [movies, setMovies] = useState([])
-  const [selectedMovie, setSelectedMovie] = useState(null)
-  const [user, setUser] = useState(null)
-  const [token, setToken] = useState(null)
 
+  const [user, setUser] = useState(storedUser ? storedUser : null)
+  const [token, setToken] = useState(storedToken ? storedToken : null)
+
+  const [selectedMovie, setSelectedMovie] = useState(null)
+  const [movies, setMovies] = useState([])
   // Gets the json data from external API
   useEffect(() => {
     if (!token) { // Checks if there is a token
