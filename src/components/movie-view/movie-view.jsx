@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 export const MovieView = ({ movie, onBackClick }) => {
-    return (
+  return (
       <div>
         <div>
           <img src={movie.ImagePath}
-          style={{width: "600", height: "400"}} 
+          style={{ width: '600', height: '400' }}
           alt= {movie.Title}
           />
         </div>
@@ -27,15 +27,15 @@ export const MovieView = ({ movie, onBackClick }) => {
         </div>
         <button onClick={onBackClick}>Back</button>
       </div>
-    );
-  };
-  
- MovieView.propTypes = {
+  )
+}
+
+MovieView.propTypes = {
   movie: PropTypes.shape({
     ImagePath: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape ({
+    Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired
     }),
@@ -43,9 +43,9 @@ export const MovieView = ({ movie, onBackClick }) => {
       Name: PropTypes.string.isRequired,
       Bio: PropTypes.string.isRequired,
       Birth: PropTypes.string.isRequired,
-      Death: PropTypes.string.isRequired,
+      Death: PropTypes.string.isRequired
     }),
     Featured: PropTypes.bool.isRequired
   }).isRequired,
   onBackClick: PropTypes.func.isRequired
- }; 
+}

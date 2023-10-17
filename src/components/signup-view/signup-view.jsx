@@ -1,39 +1,38 @@
-// TODO Create a signUp form 
-import { useState } from "react";
+// TODO Create a signUp form
+import { useState } from 'react'
 
-export const SignupView = (event) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [birthday, setBirthday] = useState("");
+export const SignupView = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [birthday, setBirthday] = useState('')
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
 
-    const handleSubmit = (event) => { 
-        event.preventDefault();
+    const data = {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    }
 
-        const data = {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
-        };
-
-        fetch ("https://movie-api-5rhq.onrender.com/users", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json" 
-            }
-        }).then((response) => {
-            if (response.ok) {
-                alert ("Signup successful");
-                window.location.reload();
-            } else {
-                alert("Signup failed");
-            }
-        }      );
-    };
-    return (
+    fetch('https://movie-api-5rhq.onrender.com/users', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.ok) {
+        alert('Signup successful')
+        window.location.reload()
+      } else {
+        alert('Signup failed')
+      }
+    })
+  }
+  return (
 
         <div>
             <h2>Login Form</h2>
@@ -75,5 +74,5 @@ export const SignupView = (event) => {
                 <button type="submit">Submit</button>
             </form>
         </div>
-    );
-}; 
+  )
+}
