@@ -12,8 +12,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault()
 
     const data = {
-      access: username,
-      secret: password
+      Username: username,
+      Password: password
     }
 
     fetch('https://movie-api-5rhq.onrender.com/login', { // TODO Replace with render/users "https://movie-api-5rhq.onrender.com/users"
@@ -67,8 +67,5 @@ export const LoginView = ({ onLoggedIn }) => {
   )
 }
 LoginView.propTypes = {
-  onLoggedIn: PropTypes.shape({
-    user: PropTypes.string.isRequired,
-    token: PropTypes.string.isRequired
-  })
+  onLoggedIn: PropTypes.func.isRequired
 }
