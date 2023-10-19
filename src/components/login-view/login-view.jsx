@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
-
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/button'
 export const LoginView = ({ onLoggedIn }) => {
   // Username and Password in empty state
   const [username, setUsername] = useState('')
@@ -41,28 +42,35 @@ export const LoginView = ({ onLoggedIn }) => {
   }
   // Shows Login Form in Frontend
   return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    minLength="5"
-                />
-            </label>
-            <label>
-                Password:
-                <input type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">
-                Submit
-            </button>
-        </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId='formUsername'>
+        <Form.Label htmlFor='Username'>Username:</Form.Label>
+        <Form.Control
+        id='Username'
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="5"
+          aria-describedby='usernameHelptext'
+        />
+        <Form.Text style= {{ display: 'none' }} id='usernamedHelptext'>Your Name must be at least five characterslong. Special characters, like underscores, spaces or emojis are not allowed.</Form.Text>
+      </Form.Group>
+      <Form.Group controlId='formPassword'>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control type="password"
+        id='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          aria-describedby='passwordHelptext'
+        />
+        <Form.Text id='passwordHelptext'></Form.Text>
+      </Form.Group>
+      <Button type="submit">
+        Submit
+      </Button>
+    </Form>
 
   )
 }
