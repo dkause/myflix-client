@@ -42,17 +42,20 @@ export const LoginView = ({ onLoggedIn }) => {
   }
   // Shows Login Form in Frontend
   return (
+<>
+    <h2>Login</h2>
+    <p>Please enter your name and password or signup:</p>
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId='formUsername'>
         <Form.Label htmlFor='Username'>Username:</Form.Label>
         <Form.Control
         id='Username'
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="5"
-          aria-describedby='usernameHelptext'
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+        minLength="5"
+        aria-describedby='usernameHelptext'
         />
         <Form.Text style= {{ display: 'none' }} id='usernamedHelptext'>Your Name must be at least five characterslong. Special characters, like underscores, spaces or emojis are not allowed.</Form.Text>
       </Form.Group>
@@ -60,17 +63,18 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Label>Password:</Form.Label>
         <Form.Control type="password"
         id='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          aria-describedby='passwordHelptext'
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        aria-describedby='passwordHelptext'
         />
         <Form.Text id='passwordHelptext'></Form.Text>
       </Form.Group>
-      <Button type="submit">
+      <Button className='mt-3'type="submit">
         Submit
       </Button>
     </Form>
+        </>
 
   )
 }

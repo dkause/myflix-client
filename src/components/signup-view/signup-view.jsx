@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 export const SignupView = () => {
   const [username, setUsername] = useState('')
@@ -36,8 +37,8 @@ export const SignupView = () => {
   }
   return (
 
-    <div>
-      <h2>SignUp Form</h2>
+    <Col>
+      <h2>SignUp</h2>
       <p>You need to enter a username, your email and a password to register:</p>
       <Form onSubmit={handleSubmit}>
       <Form.Group controlId='formUsername'>
@@ -83,8 +84,8 @@ export const SignupView = () => {
             />
             <Form.Text id='birtdayHelptext'>Not necessary, but helpful.</Form.Text>
             </Form.Group>
-        <Button type="submit">Submit</Button>
+        <Button className='mt-3' type="submit">Submit</Button>
       </Form>
-    </div>
+    </Col>
   )
 }

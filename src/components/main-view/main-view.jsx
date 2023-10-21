@@ -1,12 +1,12 @@
 /* eslint-disable multiline-ternary */
 import { useEffect, useState } from 'react'
+import { NavigationView } from './navigation-view/navigation-view'
 import { MovieCard } from '../movie-card/movie-card'
 import { MovieView } from '../movie-view/movie-view'
 import { LoginView } from '../login-view/login-view'
 import { SignupView } from '../signup-view/signup-view'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 
 export const MainView = () => {
   // State Variables, which are dynamic
@@ -36,47 +36,59 @@ export const MainView = () => {
   // Shows login if user is not logged in
   return (
     <>
-    <Button variant='warning' onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>Logout</Button>
-
-    <Row className='justify-content-md-center'>
-      {!user ? (
-        <Col md={5}>
-          <LoginView
-            onLoggedIn={(user, token) => {
-              setUser(user)
-              setToken(token)
-            }} />
-          or
-          <SignupView />
-          </Col>
-      ) : selectedMovie
-        ? (
-          <Col md={8}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
-            />
-            </Col>
-          ) : movies.length === 0 ? (
-           <div>The list is empty!</div>
-          ) : (
-          // Sets setUser, setToken to Null when clicked
-
+      <NavigationView
+        user={user}
+        onLoggedOut={() => {
+          setUser(null)
+          localStorage.clear()
+        }}
+      />
+      <Row className='justify-content-md-left'>
+        {!user ? (
           <>
-            {movies.map((movie) => (
-              <Col key={movie._id} md={3}>
+            <Col md={6}>
+              <LoginView
+                onLoggedIn={(user, token) => {
+                  setUser(user)
+                  setToken(token)
+                }} />
+            </Col>
+            <Col>
 
-              <MovieCard
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie)
-                }}
-                />
-                </Col>
-            ))}
+              <SignupView />
+            </Col>
           </>
-          )}
-        </Row>
-        </>
+        ) : selectedMovie
+          ? (
+            <>
+              <Row className='justify-content-md-center'>
+
+                <MovieView
+                  movie={selectedMovie}
+                  onBackClick={() => setSelectedMovie(null)}
+                />
+              </Row>
+            </>
+            ) : movies.length === 0 ? (
+            <div>The list is empty!</div>
+            ) : (
+
+            <>
+
+              {movies.map((movie) => (
+                <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
+
+                  <MovieCard
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => {
+                      setSelectedMovie(newSelectedMovie)
+                    }}
+                  />
+                </Col>
+              ))}
+            </>
+            )}
+      </Row>
+    </>
   )
 }

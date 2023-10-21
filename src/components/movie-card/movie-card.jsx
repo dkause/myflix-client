@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Button, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   console.log('MovieCard props:', { movie, onMovieClick })
@@ -7,16 +7,19 @@ export const MovieCard = ({ movie, onMovieClick }) => {
     return null // or some other fallback UI
   }
   return (
-    <Card>
+
+    <Card onClick={() => {
+      onMovieClick(movie)
+    }} className='mb-3'>
       <Card.Img variant='top' src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
-        <Button
+        {/* <Button
           onClick={() => {
             onMovieClick(movie)
           }}
-        >Klick to open
-        </Button>
+          >Klick to open
+        </Button> */}
       </Card.Body>
     </Card>
   )
