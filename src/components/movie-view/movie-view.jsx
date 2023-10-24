@@ -1,32 +1,39 @@
 import PropTypes from 'prop-types'
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
+import Col from 'react-bootstrap/Col'
 
 export const MovieView = ({ movie, onBackClick }) => {
   return (
-      <div>
-        <div>
-          <img src={movie.ImagePath}
-          style={{ width: '600', height: '400' }}
-          alt= {movie.Title}
-          />
-        </div>
-        <div>
-          <span>Title: </span>
-          <span>{movie.Title}</span>
-        </div>
-        <div>
-          <span>Description: </span>
-          <span>{movie.Description}</span>
-        </div>
-        <div>
-          <span>Genre: </span>
-          <span>{movie.Genre.Name}</span>
-        </div>
-        <div>
-          <span>Director: </span>
-          <span>{movie.Director.Name}</span>
-        </div>
-        <button onClick={onBackClick}>Back</button>
-      </div>
+      <>
+
+          <Col lg={6} >
+            <Image rounded src={movie.ImagePath}
+            style={{ width: '100%', height: '400' }}
+            alt= {movie.Title}
+            />
+          </Col>
+
+        <Col lg={6}>
+          <h3 className='mt-4'>
+            <span>Title: </span>
+            <span>{movie.Title}</span>
+          </h3>
+          <div>
+            <span>Description: </span>
+            <span>{movie.Description}</span>
+          </div>
+          <div>
+            <span>Genre: </span>
+            <span>{movie.Genre.Name}</span>
+          </div>
+          <div className='mb-3'>
+            <span>Director: </span>
+            <span>{movie.Director.Name}</span>
+          </div>
+          <Button onClick={onBackClick}>Back</Button>
+        </Col>
+      </>
   )
 }
 

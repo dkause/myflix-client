@@ -1,5 +1,8 @@
 // TODO Create a signUp form
 import { useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 export const SignupView = () => {
   const [username, setUsername] = useState('')
@@ -34,45 +37,55 @@ export const SignupView = () => {
   }
   return (
 
-        <div>
-            <h2>Login Form</h2>
-            <p>You need to enter a name, your email and a password to register:</p>
-            <form onSubmit={handleSubmit}>
-                <label >Username, min. 5 characters:
+    <Col>
+      <h2>SignUp</h2>
+      <p>You need to enter a username, your email and a password to register:</p>
+      <Form onSubmit={handleSubmit}>
+      <Form.Group controlId='formUsername'>
+        <Form.Label htmlFor='Username'>Username:</Form.Label>
+        <Form.Control
+        id='Username'
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="5"
+          aria-describedby='usernameHelptext'
+        />
+        <Form.Text id='usernamedHelptext'>Your Name must be at least five characters long. Special characters, like underscores, spaces or emojis are not allowed.</Form.Text>
+      </Form.Group>
+        <Form.Group controlId='Password'>
+      <Form.Label>Password:</Form.Label>
+        <Form.Control type="password"
+        id='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          aria-describedby='passwordHelptext'
+        />
+        <Form.Text id='passwordHelptext'></Form.Text>
+      </Form.Group>
+        <Form.Group controlId='Email'>
 
-                    <input type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </label>
-                <label >Password:
-
-                    <input type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label >Email:
-
-                    <input type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </label>
-                <p>Not mandatory, but helpfull, your Birthday</p>
-                <label >Birthday:
-
-                    <input type="date"
-                        value={birthday}
-                        onChange={(e) => setBirthday(e.target.value)}
-                    />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+          <Form.Label>Email:</Form.Label>
+          <Form.Control type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId='Birthday'>
+        <Form.Label htmlFor='Birthday'>Please enter your Birthday:</Form.Label>
+          <Form.Control type="date"
+          id='Birthday'
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            aria-describedby='birthdayHelptext'
+            />
+            <Form.Text id='birtdayHelptext'>Not necessary, but helpful.</Form.Text>
+            </Form.Group>
+        <Button className='mt-3' type="submit">Submit</Button>
+      </Form>
+    </Col>
   )
 }
