@@ -1,12 +1,13 @@
 /* eslint-disable multiline-ternary */
 import { useEffect, useState } from 'react'
-import { NavigationView } from './navigation-view/navigation-view'
+import { NavigationView } from '../navigation-view/navigation-view'
 import { MovieCard } from '../movie-card/movie-card'
 import { MovieView } from '../movie-view/movie-view'
 import { LoginView } from '../login-view/login-view'
 import { SignupView } from '../signup-view/signup-view'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 export const MainView = () => {
   // State Variables, which are dynamic
@@ -16,7 +17,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser || null)
   const [token, setToken] = useState(storedToken || null)
 
-  const [selectedMovie, setSelectedMovie] = useState(null)
   const [movies, setMovies] = useState([])
   // Gets the json data from external API
   useEffect(() => {
@@ -43,52 +43,85 @@ export const MainView = () => {
           localStorage.clear()
         }}
       />
-      <Row className='justify-content-md-left'>
-        {!user ? (
-          <>
-            <Col md={6}>
-              <LoginView
-                onLoggedIn={(user, token) => {
-                  setUser(user)
-                  setToken(token)
-                }} />
-            </Col>
-            <Col>
+      <BrowserRouter>
+        <Row className='justify-content-md-left'>
+          <Routes>
+            <Route
+              path='/signup'
+              element={
+                <>
+                  {user ? (
+                    <Navigate to='/' />
+                  ) : (
+                    <Col>
 
-              <SignupView />
-            </Col>
+                      <SignupView />
+                    </Col>
+                  )
+                  }
+                </>
+              }
+            />
+            <Route
+              path='/login'
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={6}>
+                      <LoginView
+                        onLoggedIn={(user, token) => {
+                          setUser(user)
+                          setToken(token)
+                        }} />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+            <Route
+            path='/movies/:_id'
+            element={
+              <>
+              {!user ? (
+                <Navigate to ='/login' replace />
+              ) : movies.length === 0 ? (
+                <Col>The list is empty!</Col>
+              )
+                : <Col md={8}>
+                <MovieView movies={movies}></MovieView>
+                </Col>}
+              </>
+            }
+            />
+            <Route
+              path='/'
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to='/login' replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+
+                    <>
+
+                      {movies.map((movie) => (
+                        <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
+
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))}
+                    </>
+                  )}
+
           </>
-        ) : selectedMovie
-          ? (
-            <>
-              <Row className='justify-content-md-center'>
-
-                <MovieView
-                  movie={selectedMovie}
-                  onBackClick={() => setSelectedMovie(null)}
-                />
-              </Row>
-            </>
-            ) : movies.length === 0 ? (
-            <div>The list is empty!</div>
-            ) : (
-
-            <>
-
-              {movies.map((movie) => (
-                <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
-
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => {
-                      setSelectedMovie(newSelectedMovie)
-                    }}
-                  />
-                </Col>
-              ))}
-            </>
-            )}
-      </Row>
-    </>
+          }
+          />
+                </Routes>
+            </Row>
+          </BrowserRouter>
+          </>
   )
 }

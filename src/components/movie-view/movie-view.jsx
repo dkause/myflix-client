@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types'
+import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 
-export const MovieView = ({ movie, onBackClick }) => {
+// eslint-disable-next-line react/prop-types
+export const MovieView = ({ movies }) => {
+  console.log(movies)
+  const { movieId } = useParams()
+  const movie = movies.find((b) => b._id === movieId)
+
   return (
       <>
 
@@ -31,7 +38,9 @@ export const MovieView = ({ movie, onBackClick }) => {
             <span>Director: </span>
             <span>{movie.Director.Name}</span>
           </div>
-          <Button onClick={onBackClick}>Back</Button>
+          <Link to={`/`}>
+          <Button >Back</Button>
+          </Link>
         </Col>
       </>
   )
@@ -53,6 +62,5 @@ MovieView.propTypes = {
       // Death: PropTypes.string.isRequired
     }),
     Featured: PropTypes.bool.isRequired
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  }).isRequired
 }
