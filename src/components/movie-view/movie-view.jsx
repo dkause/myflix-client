@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -7,8 +8,12 @@ import Col from 'react-bootstrap/Col'
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams()
-  const movie = movies.find((b) => b._id === movieId)
+ const movie = movies.find((b) => b._id === movieId)
 
+  if (!movie) {
+    // Handle the case where the movie is not found or undefined
+    return <div>Movie not found</div>;
+  }
   return (
       <>
 
@@ -37,7 +42,7 @@ export const MovieView = ({ movies }) => {
             <span>{movie.Director.Name}</span>
           </div>
           <Link to={`/`}>
-          <Button >Back</Button>
+          <Button>Back</Button>
           </Link>
         </Col>
       </>
