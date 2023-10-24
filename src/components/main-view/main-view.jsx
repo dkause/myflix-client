@@ -80,21 +80,7 @@ export const MainView = () => {
                 </>
               }
             />
-            <Route
-            path='/movies/:_id'
-            element={
-              <>
-              {!user ? (
-                <Navigate to ='/login' replace />
-              ) : movies.length === 0 ? (
-                <Col>The list is empty!</Col>
-              )
-                : <Col md={8}>
-                <MovieView movies={movies}></MovieView>
-                </Col>}
-              </>
-            }
-            />
+
             <Route
               path='/'
               element={
@@ -102,10 +88,10 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to='/login' replace />
                   ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                      <Col>The list is empty!</Col>
                   ) : (
 
-                    <>
+                        <>
 
                       {movies.map((movie) => (
                         <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
@@ -117,6 +103,21 @@ export const MainView = () => {
                   )}
 
           </>
+          }
+          />
+          <Route
+          path='/movies/:_id'
+          element={
+            <>
+            {!user ? (
+              <Navigate to ='/login' replace />
+            ) : movies.length === 0 ? (
+              <Col>The list is empty!</Col>
+            )
+              : <Col md={8}>
+              <MovieView movies={movies}></MovieView>
+              </Col>}
+            </>
           }
           />
                 </Routes>

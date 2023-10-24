@@ -5,9 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 
-// eslint-disable-next-line react/prop-types
 export const MovieView = ({ movies }) => {
-  console.log(movies)
   const { movieId } = useParams()
   const movie = movies.find((b) => b._id === movieId)
 
