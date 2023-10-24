@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams()
- const movie = movies.find((b) => b._id === movieId)
+  const movie = movies.find((b) => b._id === movieId)
 
   if (!movie) {
     // Handle the case where the movie is not found or undefined
@@ -17,14 +17,14 @@ export const MovieView = ({ movies }) => {
   return (
       <>
 
-          <Col lg={6} >
-            <Image rounded src={movie.ImagePath}
+          <Col lg={6} md={12}>
+            <Image className='mt-4' rounded src={movie.ImagePath}
             style={{ width: '100%', height: '400' }}
             alt= {movie.Title}
             />
           </Col>
 
-        <Col lg={6}>
+        <Col lg={6} md={12}>
           <h3 className='mt-4'>
             <span>Title: </span>
             <span>{movie.Title}</span>
