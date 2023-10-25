@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-
+import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -10,23 +10,26 @@ export const NavigationView = ({ user, onLoggedOut }) => {
       <Container>
         <Navbar.Brand href="#home">MyFlix</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
-                <Navbar.Collapse id='basic-navbar-nav'>
-                    <Nav className='me-auto'>
-                        {!user && (
-                            <>
-                                                            </>
-                        )}
-                        {user && (
-                            <>
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='me-auto'>
+            {!user && (
+              <>
+                <Nav.Link as={Link} to='/login'>
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to='/signup'>SignUp</Nav.Link>
+              </>
+            )}
+            {user && (
+              <>
 
-                                <Nav.Link onClick={onLoggedOut}>
-                                    Logout
-                                </Nav.Link>
-                            </>
-                        )}
-                    </Nav>
-                </Navbar.Collapse>
-        {/* <Button variant='warning' onClick={() => { user(null); setToken(null); localStorage.clear() }}>Logout</Button> */}
+                <Nav.Link onClick={onLoggedOut}>
+                  Logout
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
 
       </Container>
     </Navbar>
