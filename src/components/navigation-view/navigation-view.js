@@ -8,7 +8,7 @@ export const NavigationView = ({ user, onLoggedOut }) => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">MyFlix</Navbar.Brand>
+        <Navbar.Brand href="/">MyFlix</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
@@ -22,8 +22,8 @@ export const NavigationView = ({ user, onLoggedOut }) => {
             )}
             {user && (
               <>
-
-                <Nav.Link onClick={onLoggedOut}>
+                <Nav.Link as={Link} to='/profile'>My Profile</Nav.Link>
+                <Nav.Link as={Link} to='/' onClick={onLoggedOut}>
                   Logout
                 </Nav.Link>
               </>
@@ -37,6 +37,6 @@ export const NavigationView = ({ user, onLoggedOut }) => {
 }
 
 NavigationView.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   onLoggedOut: PropTypes.func.isRequired
 }

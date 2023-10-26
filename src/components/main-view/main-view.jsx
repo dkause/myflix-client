@@ -5,16 +5,19 @@ import { MovieCard } from '../movie-card/movie-card'
 import { MovieView } from '../movie-view/movie-view'
 import { LoginView } from '../login-view/login-view'
 import { SignupView } from '../signup-view/signup-view'
+import { ProfileView } from '../profile-view/profile-view'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 export const MainView = () => {
   // State Variables, which are dynamic
-  const storedUser = JSON.parse(localStorage.getItem('user'))
+  // const storedUser = JSON.parse(localStorage.getItem('user'))
+  const storedUser = localStorage.getItem('user')
   const storedToken = localStorage.getItem('token')
-
-  const [user, setUser] = useState(storedUser || null)
+  const parseUser = JSON.parse(storedUser)
+  console.log(parseUser)
+  const [user, setUser] = useState(storedUser ? parseUser : null)
   const [token, setToken] = useState(storedToken || null)
 
   const [movies, setMovies] = useState([])
@@ -24,7 +27,7 @@ export const MainView = () => {
       return
     }
     fetch('https://movie-api-5rhq.onrender.com/movies', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
     })
 
       .then((response) => response.json())
@@ -36,6 +39,7 @@ export const MainView = () => {
   // Shows login if user is not logged in
   return (
     <BrowserRouter>
+
       <NavigationView
         user={user}
         onLoggedOut={() => {
@@ -52,7 +56,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to='/' />
                 ) : (
-                  <Col>
+                  <Col md={6}>
 
                     <SignupView />
                   </Col>
@@ -79,7 +83,17 @@ export const MainView = () => {
               </>
             }
           />
-
+          <Route
+          path='/profile'
+          element= {
+            <ProfileView
+            user={user}
+                  token={token}
+                  movies={movies}
+                  setUser={setUser}
+            />
+          }
+          />
           <Route
             path='/'
             element={
