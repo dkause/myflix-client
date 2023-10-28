@@ -47,12 +47,11 @@ export const MainView = () => {
           localStorage.clear()
         }}
       />
-      <Row className='justify-content-md-left'>
         <Routes>
           <Route
             path='/signup'
             element={
-              <>
+              <Row className='justify-content-md-center p-5'>
                 {user ? (
                   <Navigate to='/' />
                 ) : (
@@ -62,13 +61,13 @@ export const MainView = () => {
                   </Col>
                 )
                 }
-              </>
+              </Row>
             }
           />
           <Route
             path='/login'
             element={
-              <>
+              <Row className='justify-content-md-center p-5'>
                 {user ? (
                   <Navigate to="/" />
                 ) : (
@@ -80,7 +79,7 @@ export const MainView = () => {
                       }} />
                   </Col>
                 )}
-              </>
+              </Row>
             }
           />
           <Route
@@ -97,7 +96,7 @@ export const MainView = () => {
           <Route
             path='/'
             element={
-              <>
+              <Row className='justify-content-md-left p-5'>
                 {!user ? (
                   <Navigate to='/login' replace />
                 ) : movies.length === 0 ? (
@@ -109,19 +108,22 @@ export const MainView = () => {
                     {movies.map((movie) => (
                       <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
 
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                        movie={movie}
+                        user={user}
+                         />
                       </Col>
                     ))}
                   </>
                 )}
 
-              </>
+              </Row>
             }
           />
           <Route
             path='/movies/:movieId'
             element={
-              <>
+              <Row className='justify-content-md-left'>
                 {!user ? (
                   <Navigate to='/login' replace />
                 ) : movies.length === 0 ? (
@@ -130,11 +132,10 @@ export const MainView = () => {
                   : <MovieView movies={movies}></MovieView>
 
                 }
-              </>
+              </Row>
             }
           />
         </Routes>
-      </Row>
     </BrowserRouter>
   )
 }

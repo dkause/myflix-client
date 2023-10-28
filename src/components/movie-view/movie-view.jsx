@@ -12,7 +12,7 @@ export const MovieView = ({ movies }) => {
 
   if (!movie) {
     // Handle the case where the movie is not found or undefined
-    return <div>Movie not found</div>;
+    return <div>Movie not found</div>
   }
   return (
       <>
@@ -41,7 +41,7 @@ export const MovieView = ({ movies }) => {
             <span>Director: </span>
             <span>{movie.Director.Name}</span>
           </div>
-          <Link to={`/`}>
+          <Link to={'/'}>
           <Button>Back</Button>
           </Link>
         </Col>
