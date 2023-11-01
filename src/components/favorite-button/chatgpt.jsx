@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap'
 
-export const FavoritesButton = ({ user, movie, favoriteMovies, token }) => {
-  const isMovieInFavorites = favoriteMovies.some(favMovie => favMovie._id === movie._id)
+export const FavoritesButton = ({ user, movie, favMovies, token }) => {
+  const isMovieInFavorites = favMovies.some(favMovie => favMovie._id === movie._id)
 
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
@@ -38,12 +38,12 @@ export const FavoritesButton = ({ user, movie, favoriteMovies, token }) => {
             isMovieInFavorites
               ? (
           <Button onClick={removeFavoriteMovie}>
-            <i className='bi bi-star-fill'></i>Remove
+            <i className='bi bi-star'></i>Remove
           </Button>
                 )
               : (
           <Button onClick={addFavoriteMovie}>
-            <i className='bi bi-star'></i>ADD
+            <i className='bi bi-star-fill'></i>ADD
           </Button>
                 )
           )

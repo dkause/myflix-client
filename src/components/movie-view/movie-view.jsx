@@ -7,9 +7,10 @@ import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 
 export const MovieView = ({ movies }) => {
+  console.log('movies', movies)
   const { movieId } = useParams()
   const movie = movies.find((b) => b._id === movieId)
-
+  console.log('movie', movie)
   if (!movie) {
     // Handle the case where the movie is not found or undefined
     return <div>Movie not found</div>

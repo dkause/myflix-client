@@ -16,7 +16,7 @@ export const MainView = () => {
   const storedUser = localStorage.getItem('user')
   const storedToken = localStorage.getItem('token')
   const parseUser = JSON.parse(storedUser)
-  console.log(parseUser)
+  // console.log('main-parseUser', parseUser)
   const [user, setUser] = useState(storedUser ? parseUser : null)
   const [token, setToken] = useState(storedToken || null)
 
@@ -32,7 +32,7 @@ export const MainView = () => {
 
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        console.log('main-data', data)
         setMovies(data)
       })
   }, [token])
@@ -109,6 +109,7 @@ export const MainView = () => {
                       <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
 
                         <MovieCard
+                        movies={movies}
                         movie={movie}
                         user={user}
                          />

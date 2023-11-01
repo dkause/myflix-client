@@ -8,7 +8,7 @@ export const NavigationView = ({ user, onLoggedOut }) => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">MyFlix</Navbar.Brand>
+        <Navbar.Brand className='logo'><i className="bi bi-tv"></i> MyFlix</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
@@ -21,10 +21,10 @@ export const NavigationView = ({ user, onLoggedOut }) => {
               </>
             )}
             {user && (
-              <>
-                <Nav.Link as={Link} to='/profile'>My Profile</Nav.Link>
-                <Nav.Link as={Link} to='/' onClick={onLoggedOut}>
-                  Logout
+              <><Nav.Link as={Link} to='/'><i className='bi bi-film'></i>All Movies</Nav.Link>
+                <Nav.Link as={Link} to='/profile'><i className='bi bi-person'></i>My Profile</Nav.Link>
+                <Nav.Link as={Link} to='/' onClick={onLoggedOut}><i className='bi bi-escape'></i>
+                Logout
                 </Nav.Link>
               </>
             )}
