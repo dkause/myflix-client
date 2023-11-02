@@ -32,7 +32,7 @@ export const MainView = () => {
 
       .then((response) => response.json())
       .then((data) => {
-        console.log('main-data', data)
+        // console.log('main-data', data)
         setMovies(data)
       })
   }, [token])

@@ -41,8 +41,8 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   //
   // Delete Account function
   //
-  const deleteAccount = (event) => {
-    fetch(`https://movie-api-5rhq.onrender.com/users/${user.username}`, {
+  const deleteAccount = () => {
+    fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -50,8 +50,9 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       }
     }).then((response) => {
       if (response.ok) {
+        localStorage.clear()
         alert('Removal successful.')
-        window.location.reload()
+        window.location.replace('/login')
       } else {
         alert('Removal failed.')
       }

@@ -12055,6 +12055,10 @@ textarea.form-control-lg {
   }
 }
 
+.my-flix {
+  color: #4682b4;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -24070,19 +24074,6 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
-
-.my-flix {
-  color: #4682b4;
-}
-
-span.logo {
-  font-size: 200%;
-  font-weight: 700;
-}
-
-a.nav-link i {
-  margin-right: .3rem;
 }
 
 /*# sourceMappingURL=index.d03617f6.css.map */

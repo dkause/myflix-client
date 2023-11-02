@@ -3,18 +3,14 @@ import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FavoritesButton } from '../favorite-button/favorite-button'
 
-export const MovieCard = ({ movies, movie, user }) => {
-  // console.log('movie-card_user', user)
+export const MovieCard = ({ movie, user }) => {
+  console.log('movie-card_user', user)
   // console.log('movie-card_movie', movie)
-  console.log('movies', movies)
-  const favoriteMovies = movies.filter((m) =>
-  user.FavoriteMovies.includes(m._id)
-)
-console.log('favoriteMovies', favoriteMovies)
+  // console.log('movie:id', movie._id)
+  console.log('movie-card-Username', user.Username)
   return (
     <Card className="mb-3">
-      <div>{movie._id} </div>
-          <FavoritesButton favoriteMovies={favoriteMovies} movie={movie} movies={movies} favMovie={movie._id} user={user} />
+          <FavoritesButton favmovieId={movie._id} user={user} />
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
