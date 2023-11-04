@@ -1,18 +1,19 @@
+/* eslint-disable react/prop-types */
 import { PropTypes } from 'prop-types'
+import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
-export const FavoritesButton = ({ user, movie, favmovieId, token }) => {
-  console.log('token', token)
-  console.log(user.FavoriteMovies)
-  const listofFavoriteMovies = user.FavoriteMovies
-  const isMovieInFavorites = user.FavoriteMovies.includes(favmovieId)
+export const FavoritesButton = ({ user, movie_id, movies, setUser, token }) => {
+  // const favoriteMovies = user && user.FavoriteMovies ? movies.filter((m) => user.FavoriteMovies.includes(m._id)) : []
+  // const [user, setUser] = useState (user)
+  const isMovieInFavorites = user && user.FavoriteMovies
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
       alert('Movie is already in favorites')
     } else {
       // Add the movie to the favorites list
 
-      fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${favmovieId}`, {
+      fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie_id}`, {
         method: 'POST',
 
         headers: {
@@ -33,11 +34,18 @@ export const FavoritesButton = ({ user, movie, favmovieId, token }) => {
             alert('Adding Failed!')
           }
         })
+        .then((responseUser) => {
+          if (responseUser) {
+            localStorage.setItem('user', JSON.stringify(responseUser))
+            console.log('Sucessfully added', responseUser.FavoriteMovies)
+          }
+        })
+        // .then(user => setUser(user))
     }
   }
 
   const removeFavoriteMovie = () => {
-    fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${favmovieId}`, {
+    fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -50,6 +58,12 @@ export const FavoritesButton = ({ user, movie, favmovieId, token }) => {
           // You may want to update the user's favorite movies here
         } else {
           alert('Removing from Favorites Failed!')
+        }
+      })
+      .then((responseUser) => {
+        if (responseUser) {
+          localStorage.setItem('user', JSON.stringify(responseUser))
+          console.log('Sucessfully deleted', responseUser.FavoriteMovies)
         }
       })
       .catch((error) => {
@@ -81,8 +95,8 @@ export const FavoritesButton = ({ user, movie, favmovieId, token }) => {
   )
 }
 FavoritesButton.propTypes = {
-  user: PropTypes.object.isrequired,
-  movie: PropTypes.object.isrequired,
-  favmovieId: PropTypes.object.isrequired,
-  token: PropTypes.string.isrequired
+  // setUser: PropTypes.func.isrequired,
+  user: PropTypes.object.isRequired,
+  favmovieId: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired
 }

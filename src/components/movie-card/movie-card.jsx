@@ -3,10 +3,11 @@ import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FavoritesButton } from '../favorite-button/favorite-button'
 
-export const MovieCard = ({ movie, user, token }) => {
+export const MovieCard = ({ movie, movies, user, setUser, token }) => {
+  console.log('show favoriteMovies', user.FavoriteMovies)
   return (
-    <Card className="mb-3">
-          <FavoritesButton favmovieId={movie._id} user={user} token={token}/>
+      <Card className="mb-3">
+          <FavoritesButton setUser={setUser} movie_id={movie._id} user={user} token={token} movies={movies}/>
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
@@ -25,6 +26,7 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired
   }),
   user: PropTypes.object.isRequired,
-  movies: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired,
+  movies: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired
 }

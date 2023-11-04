@@ -24085,4 +24085,8 @@ a.nav-link i {
   margin-right: .7rem;
 }
 
+div.favoriteMoviesList > div.card > div.card-body div.card-title.h5 {
+  font-size: .9rem;
+}
+
 /*# sourceMappingURL=index.d03617f6.css.map */

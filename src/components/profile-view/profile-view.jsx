@@ -7,7 +7,7 @@ import { MovieCard } from '../movie-card/movie-card'
 export const ProfileView = ({ user, token, movies, setUser }) => {
   console.log('user', user)
   const [Username, setUsername] = useState(user.Username)
-  const [Password, setPassword] = useState(user.Password)
+  const [Password, setPassword] = useState([])
   const [Email, setEmail] = useState(user.Email)
   const [Birthday, setBirthday] = useState(user.Birthday)
   // const shortBirthday = user.Birthday.slice(0, 10) FIXME: Birthday Null makes problems
@@ -60,15 +60,13 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   }
   // Get favorite Movie List
   // ******
-  const favoriteMovies = movies.filter((m) =>
-    user.FavoriteMovies.includes(m._id)
-  )
+  const favoriteMovies = user && user.FavoriteMovies ? movies.filter((m) => user.FavoriteMovies.includes(m._id)) : []
 
   // console.log('favorites Movies', favoriteMovies)
   // Output
   return (
     <Row className="justify-content-md-center mt-3 p-5">
-      <Col className="">
+      <Col >
         <h2>Update your information</h2>
         {/* FIXME: Birthday not displayed properly <p>Hi <span>{user.Username}</span>, this is your Email: <span>{user.Email}</span> and you are born <span>{shortBirthday}</span> </p> */}
         <p>You can change your username, email and password.</p>
@@ -151,19 +149,17 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       {/* Favorite Movies  */}
       <Col>
         <h2>My favorite Movies</h2>
-        <>
+        <Row>
           {favoriteMovies.map((favoriteMovies) => (
-            <Col
+            <Col md={4} className='d-flex align-items-stretch favoriteMoviesList'
               key={favoriteMovies._id}
-              lg={3}
-              md={4}
-              sm={6}
-              className="d-flex align-items-stretch"
+
+              // className="d-flex align-items-stretch"
             >
               <MovieCard movie={favoriteMovies} />
             </Col>
           ))}
-        </>
+        </Row>
       </Col>
     </Row>
   )
