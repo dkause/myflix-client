@@ -43449,7 +43449,9 @@ const FavoritesButton = ({ user, movie, setUser, token })=>{
                 localStorage.setItem("user", JSON.stringify(responseUser));
                 console.log("Sucessfully added", responseUser.FavoriteMovies);
             }
-        }).then(console.log(user));
+        }).then(console.log("profileView", user)).then((user)=>setUser(user)).catch((error)=>{
+            alert(error);
+        });
     };
     const removeFavoriteMovie = ()=>{
         console.log("Called remove from api");
@@ -43480,14 +43482,14 @@ const FavoritesButton = ({ user, movie, setUser, token })=>{
                     className: "bi bi-star-fill"
                 }, void 0, false, {
                     fileName: "src/components/favorite-button/favorite-button.jsx",
-                    lineNumber: 80,
+                    lineNumber: 85,
                     columnNumber: 13
                 }, undefined),
                 "Remove"
             ]
         }, void 0, true, {
             fileName: "src/components/favorite-button/favorite-button.jsx",
-            lineNumber: 79,
+            lineNumber: 84,
             columnNumber: 11
         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
             variant: "outline-success",
@@ -43497,14 +43499,14 @@ const FavoritesButton = ({ user, movie, setUser, token })=>{
                     className: "bi bi-star"
                 }, void 0, false, {
                     fileName: "src/components/favorite-button/favorite-button.jsx",
-                    lineNumber: 85,
+                    lineNumber: 89,
                     columnNumber: 13
                 }, undefined),
                 "ADD"
             ]
         }, void 0, true, {
             fileName: "src/components/favorite-button/favorite-button.jsx",
-            lineNumber: 84,
+            lineNumber: 88,
             columnNumber: 11
         }, undefined) : null
     }, void 0, false);
