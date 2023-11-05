@@ -1,19 +1,16 @@
 /* eslint-disable react/prop-types */
 import { PropTypes } from 'prop-types'
-import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
-export const FavoritesButton = ({ user, movie_id, movies, setUser, token }) => {
-  // const favoriteMovies = user && user.FavoriteMovies ? movies.filter((m) => user.FavoriteMovies.includes(m._id)) : []
-  // const [user, setUser] = useState (user)
-  const isMovieInFavorites = user && user.FavoriteMovies
+export const FavoritesButton = ({ user, movie, setUser, token }) => {
+  const isMovieInFavorites = user.FavoriteMovies.includes((movie._id))
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
       alert('Movie is already in favorites')
     } else {
       // Add the movie to the favorites list
 
-      fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie_id}`, {
+      fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie._id}`, {
         method: 'POST',
 
         headers: {
@@ -28,10 +25,8 @@ export const FavoritesButton = ({ user, movie_id, movies, setUser, token }) => {
 
             // You may want to update the user's favorite movies here
           } else {
-            console.log(response)
-
-            console.log(user)
             alert('Adding Failed!')
+            throw new Error('Adding Failed')
           }
         })
         .then((responseUser) => {
@@ -40,12 +35,14 @@ export const FavoritesButton = ({ user, movie_id, movies, setUser, token }) => {
             console.log('Sucessfully added', responseUser.FavoriteMovies)
           }
         })
+        .then(console.log(user))
         // .then(user => setUser(user))
     }
   }
 
   const removeFavoriteMovie = () => {
-    fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie_id}`, {
+    console.log('Called remove from api')
+    fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -79,12 +76,12 @@ export const FavoritesButton = ({ user, movie_id, movies, setUser, token }) => {
         ? (
             isMovieInFavorites
               ? (
-          <Button onClick={removeFavoriteMovie}>
+          <Button variant='outline-danger' onClick={removeFavoriteMovie}>
             <i className='bi bi-star-fill'></i>Remove
           </Button>
                 )
               : (
-          <Button onClick={addFavoriteMovie}>
+          <Button variant='outline-success' onClick={addFavoriteMovie}>
             <i className='bi bi-star'></i>ADD
           </Button>
                 )
@@ -97,6 +94,5 @@ export const FavoritesButton = ({ user, movie_id, movies, setUser, token }) => {
 FavoritesButton.propTypes = {
   // setUser: PropTypes.func.isrequired,
   user: PropTypes.object.isRequired,
-  favmovieId: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired
 }

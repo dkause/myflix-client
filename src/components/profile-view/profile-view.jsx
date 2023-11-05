@@ -156,7 +156,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
               // className="d-flex align-items-stretch"
             >
-              <MovieCard movie={favoriteMovies} />
+              <MovieCard token={token} user={user} movie={favoriteMovies} />
             </Col>
           ))}
         </Row>

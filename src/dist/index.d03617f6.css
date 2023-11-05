@@ -24089,4 +24089,12 @@ div.favoriteMoviesList > div.card > div.card-body div.card-title.h5 {
   font-size: .9rem;
 }
 
+div.favoriteMoviesList > div.card > button {
+  font-size: 1rem;
+}
+
+div.favoriteMoviesList > div.card > button > i {
+  margin-right: .5rem;
+}
+
 /*# sourceMappingURL=index.d03617f6.css.map */
