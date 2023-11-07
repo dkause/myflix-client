@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col'
 export const MovieView = ({ movies }) => {
   console.log('movies', movies)
   const { movieId } = useParams()
+  console.log('movie-view', movieId)
   const movie = movies.find((b) => b._id === movieId)
   console.log('movie', movie)
   if (!movie) {
@@ -51,7 +52,7 @@ export const MovieView = ({ movies }) => {
 }
 
 MovieView.propTypes = {
-  movie: PropTypes.shape({
+  movies: PropTypes.shape({
     ImagePath: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,

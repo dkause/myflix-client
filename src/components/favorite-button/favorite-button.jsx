@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import { PropTypes } from 'prop-types'
 import { Button } from 'react-bootstrap'
 
 export const FavoritesButton = ({ user, movie, setUser, token }) => {
+  // const [user, setUser] = useState('')
   const isMovieInFavorites = user.FavoriteMovies.includes(movie._id)
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
@@ -23,9 +23,9 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
       )
         .then((response) => {
           if (response.ok) {
+            window.location.reload()
             alert('Movie added to favorites')
             return response.json()
-
             // You may want to update the user's favorite movies here
           } else {
             alert('Adding Failed!')
@@ -37,6 +37,7 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
             localStorage.setItem('user', JSON.stringify(responseUser))
             console.log('Sucessfully added', responseUser.FavoriteMovies)
           }
+          setUser(responseUser)
         })
         .then(console.log('profileView', user))
         .then((user) => setUser(user))
@@ -61,15 +62,16 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
       .then((response) => {
         if (response.ok) {
           alert('Movie deleted from favorites')
-          // You may want to update the user's favorite movies here
+          return response.json()
         } else {
           alert('Removing from Favorites Failed!')
         }
       })
-      .then((responseUser) => {
-        if (responseUser) {
-          localStorage.setItem('user', JSON.stringify(responseUser))
-          console.log('Sucessfully deleted', responseUser.FavoriteMovies)
+      .then((user) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user))
+          setUser(user)
+          console.log('Sucessfully deleted', user.FavoriteMovies)
         }
       })
       .catch((error) => {
@@ -79,22 +81,27 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
 
   return (
     <>
-      {user ? (
-        isMovieInFavorites ? (
+      {user
+        ? (
+            isMovieInFavorites
+              ? (
           <Button variant='outline-danger' onClick={removeFavoriteMovie}>
             <i className='bi bi-star-fill'></i>Remove
           </Button>
-        ) : (
+                )
+              : (
           <Button variant='outline-success' onClick={addFavoriteMovie}>
             <i className='bi bi-star'></i>ADD
           </Button>
-        )
-      ) : null}
+                )
+          )
+        : null}
     </>
   )
 }
 FavoritesButton.propTypes = {
-  // setUser: PropTypes.func.isrequired,
+  movie: PropTypes.array.isrequired,
+  setUser: PropTypes.func.isrequired,
   user: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired
 }

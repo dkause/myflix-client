@@ -25,7 +25,7 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired
   }),
   user: PropTypes.object.isRequired,
-  // setUser: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired
 }

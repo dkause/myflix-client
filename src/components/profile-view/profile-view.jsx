@@ -62,7 +62,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   // ******
   const favoriteMovies = user && user.FavoriteMovies ? movies.filter((m) => user.FavoriteMovies.includes(m._id)) : []
 
-  // console.log('favorites Movies', favoriteMovies)
+  console.log('favorites Movies', favoriteMovies)
   // Output
   return (
     <Row className="justify-content-md-center mt-3 p-5">

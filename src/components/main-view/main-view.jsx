@@ -45,6 +45,7 @@ export const MainView = () => {
         user={user}
         onLoggedOut={() => {
           setUser(null)
+          setToken(null)
           localStorage.clear()
         }}
       />
@@ -113,6 +114,7 @@ export const MainView = () => {
                         movies={movies}
                         movie={movie}
                         user={user}
+                        setUser={user => setUser(user)}
                         token={token}
                          />
                       </Col>
