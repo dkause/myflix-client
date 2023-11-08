@@ -7,11 +7,11 @@ import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 
 export const MovieView = ({ movies }) => {
-  console.log('movies', movies)
+  // console.log('movies', movies)
   const { movieId } = useParams()
-  console.log('movie-view', movieId)
+  // console.log('movie-view', movieId)
   const movie = movies.find((b) => b._id === movieId)
-  console.log('movie', movie)
+  // console.log('movie', movie)
   if (!movie) {
     // Handle the case where the movie is not found or undefined
     return <div>Movie not found</div>
@@ -52,20 +52,21 @@ export const MovieView = ({ movies }) => {
 }
 
 MovieView.propTypes = {
-  movies: PropTypes.shape({
-    ImagePath: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired
-    }),
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Bio: PropTypes.string.isRequired,
-      Birth: PropTypes.string.isRequired
-      // Death: PropTypes.string.isRequired
-    }),
-    Featured: PropTypes.bool.isRequired
-  }).isRequired
+  movies: PropTypes.array.isRequired
+  // movies: PropTypes.shape({
+  //   ImagePath: PropTypes.string.isRequired,
+  //   Title: PropTypes.string.isRequired,
+  //   Description: PropTypes.string.isRequired,
+  //   Genre: PropTypes.shape({
+  //     Name: PropTypes.string.isRequired,
+  //     Description: PropTypes.string.isRequired
+  //   }),
+  //   Director: PropTypes.shape({
+  //     Name: PropTypes.string.isRequired,
+  //     Bio: PropTypes.string.isRequired,
+  //     Birth: PropTypes.string.isRequired
+  //     // Death: PropTypes.string.isRequired
+  //   }),
+  //   Featured: PropTypes.bool.isRequired
+  // }).isRequired
 }

@@ -100,8 +100,8 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
   )
 }
 FavoritesButton.propTypes = {
-  movie: PropTypes.array.isrequired,
-  setUser: PropTypes.func.isrequired,
+  movie: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired
 }

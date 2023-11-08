@@ -2,3 +2,4 @@ node_modules
 .cache
 .parcel-cache
 dist
+src/components/movie-card/moviw-carddd.jsx

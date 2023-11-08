@@ -37,7 +37,7 @@ export const MainView = () => {
       })
   }, [token])
   // Shows login if user is not logged in
-  console.log('main', user)
+  // console.log('main', user)
   return (
     <BrowserRouter>
 
@@ -109,14 +109,13 @@ export const MainView = () => {
 
                     {movies.map((movie) => (
                       <Col key={movie._id} lg={3} md={4} sm={6} className='d-flex align-items-stretch'>
-
                         <MovieCard
-                        movies={movies}
+                        // movies={movies}
                         movie={movie}
                         user={user}
-                        setUser={user => setUser(user)}
+                        setUser={setUser}
                         token={token}
-                         />
+                        />
                       </Col>
                     ))}
                   </>
@@ -124,7 +123,7 @@ export const MainView = () => {
 
               </Row>
             }
-          />
+            />
           <Route
             path='/movies/:movieId'
             element={
@@ -132,14 +131,14 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to='/login' replace />
                 ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
+                    <Col>The list is empty!</Col>
                 )
                   : <MovieView movies={movies}></MovieView>
 
-                }
+                  }
               </Row>
             }
-          />
+            />
         </Routes>
     </BrowserRouter>
   )

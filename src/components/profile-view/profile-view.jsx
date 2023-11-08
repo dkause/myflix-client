@@ -19,7 +19,6 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       Email,
       Birthday
     }
-    console.log('Data', data)
     fetch(`https://movie-api-5rhq.onrender.com/users/${user.Username}`, {
       method: 'PUT',
       body: JSON.stringify(data),
@@ -35,7 +34,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       } else {
         alert('Update failed.')
       }
-    })
+    }).catch((error) => { alert(error) })
   }
 
   //
@@ -74,7 +73,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
           <Form.Group>
             <Form.Label htmlFor="Username">Username:</Form.Label>
             <Form.Control
-              // id='Username'
+              id='Username'
               type="text"
               value={Username}
               placeholder={user.Username}
@@ -96,7 +95,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
               onChange={(e) => setPassword(e.target.value)}
               aria-describedby="passwordHelptext"
             />
-            <Form.Text id="passwordHelptext"></Form.Text>
+            <Form.Text id="passwordHelptext">You password here, please.</Form.Text>
           </Form.Group>
           <Form.Group controlId="Email">
             <Form.Label>Email:</Form.Label>
