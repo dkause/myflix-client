@@ -6,8 +6,7 @@ export const LoginView = ({ onLoggedIn }) => {
   // Username and Password in empty state
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  // User submits Data in form, we check for testing against openlibrary login data
-  // TODO Replace Openlibrary with MyFlix API
+  console.log('LoginView', username, password) // ??? Why is this not empty?
   const handleSubmit = (event) => {
     // this prevents the default form behavior, which is to relaod the whole page
     event.preventDefault()
@@ -17,16 +16,16 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password
     }
 
-    fetch('https://movie-api-5rhq.onrender.com/login', { // TODO Replace with render/users "https://movie-api-5rhq.onrender.com/users"
-      method: 'POST',
+    fetch('https://movie-api-5rhq.onrender.com/users', { // TODO Replace with render/users "https://movie-api-5rhq.onrender.com/users"
+      method: 'GET',
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      }
     })
       .then((response) => response.json()) // Transforms response into json object  to extract teh token
       .then((data) => {
-        console.log('Login data: ', data)
+        console.log('Login data:', data)
         if (data.user) {
           localStorage.setItem('user', JSON.stringify(data.user)) // Saves in local browser storage
           localStorage.setItem('token', (data.token))
@@ -36,8 +35,9 @@ export const LoginView = ({ onLoggedIn }) => {
           alert('No User found.')
         }
       })
-      .catch((e) => {
+      .catch((err) => {
         alert('Something went wrong')
+        console.error(err)
       })
   }
   // Shows Login Form in Frontend
