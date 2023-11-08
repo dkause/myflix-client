@@ -17,7 +17,7 @@ export const LoginView = ({ onLoggedIn }) => {
     }
 
     fetch('https://movie-api-5rhq.onrender.com/users', { // TODO Replace with render/users "https://movie-api-5rhq.onrender.com/users"
-      method: 'GET',
+      method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
