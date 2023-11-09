@@ -5,11 +5,11 @@ import { Col, Row, Form, Button } from 'react-bootstrap'
 import { MovieCard } from '../movie-card/movie-card'
 
 export const ProfileView = ({ user, token, movies, setUser }) => {
-  console.log('user', user)
-  const [Username, setUsername] = useState(user.Username)
+  console.log('ProfileVIEW-user', user)
+  const [Username, setUsername] = useState(user ? user.Username : null)
   const [Password, setPassword] = useState([])
-  const [Email, setEmail] = useState(user.Email)
-  const [Birthday, setBirthday] = useState(user.Birthday)
+  const [Email, setEmail] = useState(user ? user.Email : null)
+  const [Birthday, setBirthday] = useState(user ? user.Birthday : null)
   console.log('Birthday', user.Birthday)
   const date = new Date(user.Birthday)
   const shortBirthday = date.toLocaleDateString('en-GB')
@@ -33,16 +33,17 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     })
       .then((response) => {
         console.log('profile', data)
+        console.log('profile-response', response)
         if (response.ok) {
-          alert('Update successful.')
-          window.location.reload()
           return response.json()
         } else {
           alert('Update failed.')
         }
       })
-      .then((response) =>
-        setUser(user))
+      .then((updatedUser) => {
+        alert('Update successful.')
+        setUser(updatedUser)
+      })
       .catch((error) => {
         alert(error)
       })

@@ -3,7 +3,10 @@ import { Button } from 'react-bootstrap'
 
 export const FavoritesButton = ({ user, movie, setUser, token }) => {
   // const [user, setUser] = useState('')
+  console.log('user', user)
+  console.log('user.FavoriteMovies', user.FavoriteMovies)
   const isMovieInFavorites = user.FavoriteMovies.includes(movie._id)
+  console.log('isMovieInFavorites', isMovieInFavorites)
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
       alert('Movie is already in favorites')
@@ -22,7 +25,7 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
         }
       )
         .then((response) => {
-          console.log('Response',response);
+          console.log('Response', response)
           if (response.ok) {
             window.location.reload()
             alert('Movie added to favorites')
