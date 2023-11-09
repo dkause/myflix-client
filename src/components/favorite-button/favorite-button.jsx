@@ -22,6 +22,7 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
         }
       )
         .then((response) => {
+          console.log('Response',response);
           if (response.ok) {
             window.location.reload()
             alert('Movie added to favorites')
@@ -33,6 +34,7 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
           }
         })
         .then((responseUser) => {
+          console.log('responseUser', responseUser)
           if (responseUser) {
             localStorage.setItem('user', JSON.stringify(responseUser))
             console.log('Sucessfully added', responseUser.FavoriteMovies)

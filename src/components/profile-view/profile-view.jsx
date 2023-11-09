@@ -10,7 +10,11 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const [Password, setPassword] = useState([])
   const [Email, setEmail] = useState(user.Email)
   const [Birthday, setBirthday] = useState(user.Birthday)
-  // const shortBirthday = user.Birthday.slice(0, 10) FIXME: Birthday Null makes problems
+  console.log('Birthday', user.Birthday)
+  const date = new Date(user.Birthday)
+  const shortBirthday = date.toLocaleDateString('en-GB');
+  console.log(shortBirthday)
+
   const updateData = (event) => {
     event.preventDefault()
     const data = {
@@ -113,7 +117,8 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             <Form.Control
               type="date"
               // id='Birthday'
-              value={Birthday}
+              value={date}
+              placeholder={date}
               onChange={(e) => setBirthday(e.target.value)}
               aria-describedby="birthdayHelptext"
             />
@@ -155,7 +160,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
               // className="d-flex align-items-stretch"
             >
-              <MovieCard token={token} user={user} movie={favoriteMovies} />
+              <MovieCard token={token} user={user} setUser={setUser} movie={favoriteMovies} />
             </Col>
           ))}
         </Row>

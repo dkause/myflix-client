@@ -38,6 +38,7 @@ export const MainView = () => {
   }, [token])
   // Shows login if user is not logged in
   console.log('main-user', user)
+  console.log('main-setUser', setUser)
   return (
     <BrowserRouter>
 
