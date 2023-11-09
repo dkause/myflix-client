@@ -12,7 +12,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const [Birthday, setBirthday] = useState(user.Birthday)
   console.log('Birthday', user.Birthday)
   const date = new Date(user.Birthday)
-  const shortBirthday = date.toLocaleDateString('en-GB');
+  const shortBirthday = date.toLocaleDateString('en-GB')
   console.log(shortBirthday)
 
   const updateData = (event) => {
@@ -30,15 +30,22 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       }
-    }).then((response) => {
-      console.log('profile', data)
-      if (response.ok) {
-        alert('Update successful.')
-        window.location.reload()
-      } else {
-        alert('Update failed.')
-      }
-    }).catch((error) => { alert(error) })
+    })
+      .then((response) => {
+        console.log('profile', data)
+        if (response.ok) {
+          alert('Update successful.')
+          window.location.reload()
+          return response.json()
+        } else {
+          alert('Update failed.')
+        }
+      })
+      .then((response) =>
+        setUser(user))
+      .catch((error) => {
+        alert(error)
+      })
   }
 
   //
@@ -63,86 +70,88 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   }
   // Get favorite Movie List
   // ******
-  const favoriteMovies = user && user.FavoriteMovies ? movies.filter((m) => user.FavoriteMovies.includes(m._id)) : []
+  const favoriteMovies =
+    user && user.FavoriteMovies
+      ? movies.filter((m) => user.FavoriteMovies.includes(m._id))
+      : []
 
   console.log('favorites Movies', favoriteMovies)
   // Output
   return (
-    <Row className="justify-content-md-center mt-3 p-5">
-      <Col >
+    <Row className='justify-content-md-center mt-3 p-5'>
+      <Col>
         <h2>Update your information</h2>
-        {/* FIXME: Birthday not displayed properly <p>Hi <span>{user.Username}</span>, this is your Email: <span>{user.Email}</span> and you are born <span>{shortBirthday}</span> </p> */}
         <p>You can change your username, email and password.</p>
         <Form onSubmit={updateData}>
           <Form.Group>
-            <Form.Label htmlFor="Username">Username:</Form.Label>
+            <Form.Label htmlFor='Username'>Username:</Form.Label>
             <Form.Control
               id='Username'
-              type="text"
+              type='text'
               value={Username}
               placeholder={user.Username}
               onChange={(e) => setUsername(e.target.value)}
-              minLength="5"
-              aria-describedby="usernameHelptext"
+              minLength='5'
+              aria-describedby='usernameHelptext'
             />
-            <Form.Text id="usernameHelptext">
+            <Form.Text id='usernameHelptext'>
               Your Name must be at least five characters long. Special
               characters, like underscores, spaces or emojis are not allowed.
             </Form.Text>
           </Form.Group>
-          <Form.Group controlId="Password">
+          <Form.Group controlId='Password'>
             <Form.Label>Password:</Form.Label>
             <Form.Control
-              type="password"
-              // id='Password'
+              type='password'
               value={Password}
               onChange={(e) => setPassword(e.target.value)}
-              aria-describedby="passwordHelptext"
+              aria-describedby='passwordHelptext'
             />
-            <Form.Text id="passwordHelptext">You password here, please.</Form.Text>
+            <Form.Text id='passwordHelptext'>
+              You password here, please.
+            </Form.Text>
           </Form.Group>
-          <Form.Group controlId="Email">
+          <Form.Group controlId='Email'>
             <Form.Label>Email:</Form.Label>
             <Form.Control
-              type="email"
+              type='email'
               value={Email}
               placeholder={user.Email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="Birthday">
+            <Form.Label htmlFor='Birthday'>
               Please enter your Birthday:
             </Form.Label>
             <Form.Control
-              type="date"
-              // id='Birthday'
+              type='date'
               value={date}
               placeholder={date}
               onChange={(e) => setBirthday(e.target.value)}
-              aria-describedby="birthdayHelptext"
+              aria-describedby='birthdayHelptext'
             />
-            <Form.Text id="birtdayHelptext">
+            <Form.Text id='birtdayHelptext'>
               Not necessary, but helpful.
             </Form.Text>
           </Form.Group>
           <Row>
             <Col>
               <Button
-                className="mt-3"
-                variant="primary"
+                className='mt-3'
+                variant='primary'
                 onClick={updateData}
-                type="submit"
+                type='submit'
               >
                 Update Info
               </Button>
             </Col>
             <Col>
               <Button
-                className="mt-3 ml"
-                variant="danger"
+                className='mt-3 ml'
+                variant='danger'
                 onClick={deleteAccount}
-                type="submit"
+                type='submit'
               >
                 Delete my Account{' '}
               </Button>
@@ -155,12 +164,17 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
         <h2>My favorite Movies</h2>
         <Row>
           {favoriteMovies.map((favoriteMovies) => (
-            <Col md={4} className='d-flex align-items-stretch favoriteMoviesList'
+            <Col
+              md={4}
+              className='d-flex align-items-stretch favoriteMoviesList'
               key={favoriteMovies._id}
-
-              // className="d-flex align-items-stretch"
             >
-              <MovieCard token={token} user={user} setUser={setUser} movie={favoriteMovies} />
+              <MovieCard
+                token={token}
+                user={user}
+                setUser={setUser}
+                movie={favoriteMovies}
+              />
             </Col>
           ))}
         </Row>
