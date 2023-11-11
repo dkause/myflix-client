@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { FavoritesButton } from '../favorite-button/favorite-button'
 
 export const MovieCard = ({ movie, user, setUser, token }) => {
+  console.log('movie-setUser', setUser)
+
   return (
       <Card className="mb-3">
           <FavoritesButton setUser={setUser} movie={movie} user={user} token={token} />

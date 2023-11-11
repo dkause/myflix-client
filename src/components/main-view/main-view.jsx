@@ -18,6 +18,7 @@ export const MainView = () => {
   const parseUser = JSON.parse(storedUser)
   // console.log('main-parseUser', parseUser)
   const [user, setUser] = useState(storedUser ? parseUser : null)
+  // console.log('main-setUser', setUser)
   const [token, setToken] = useState(storedToken || null)
 
   const [movies, setMovies] = useState([])

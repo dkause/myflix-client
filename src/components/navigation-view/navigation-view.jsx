@@ -1,10 +1,14 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
-export const NavigationView = ({ user, onLoggedOut }) => {
+export const NavigationView = ({ user: userProp, onLoggedOut }) => {
+  console.log('NavigationView user', userProp)
+  // Wenn der User leer ist, dann User auf Null setzen
+  const [user, setUser] = useState(userProp)
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>

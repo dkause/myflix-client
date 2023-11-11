@@ -42,9 +42,9 @@ export const SignupView = () => {
       <p>You need to enter a username, your email and a password to register:</p>
       <Form onSubmit={handleSubmit}>
       <Form.Group controlId='formUsername'>
-        <Form.Label htmlFor='Username'>Username:</Form.Label>
+        <Form.Label>Username:</Form.Label>
         <Form.Control
-        id='Username'
+        // id='Username'
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -57,7 +57,7 @@ export const SignupView = () => {
         <Form.Group controlId='Password'>
       <Form.Label>Password:</Form.Label>
         <Form.Control type="password"
-        id='Password'
+        // id='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -75,9 +75,9 @@ export const SignupView = () => {
           />
         </Form.Group>
         <Form.Group controlId='Birthday'>
-        <Form.Label htmlFor='Birthday'>Please enter your Birthday:</Form.Label>
+        <Form.Label>Please enter your Birthday:</Form.Label>
           <Form.Control type="date"
-          id='Birthday'
+          // id='Birthday'
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
             aria-describedby='birthdayHelptext'

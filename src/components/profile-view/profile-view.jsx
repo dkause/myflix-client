@@ -10,10 +10,10 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const [Password, setPassword] = useState([])
   const [Email, setEmail] = useState(user ? user.Email : null)
   const [Birthday, setBirthday] = useState(user ? user.Birthday : null)
-  console.log('Birthday', user.Birthday)
-  const date = new Date(user.Birthday)
-  const shortBirthday = date.toLocaleDateString('en-GB')
-  console.log(shortBirthday)
+  // console.log('Birthday', user.Birthday)
+  const date = user ? new Date(user.Birthday) : null
+  const shortBirthday = date ? date.toLocaleDateString('en-GB') : null
+  console.log('shortbirthday', shortBirthday)
 
   const updateData = (event) => {
     event.preventDefault()
@@ -85,12 +85,12 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
         <p>You can change your username, email and password.</p>
         <Form onSubmit={updateData}>
           <Form.Group>
-            <Form.Label htmlFor='Username'>Username:</Form.Label>
+            <Form.Label>Username:</Form.Label>
             <Form.Control
               id='Username'
               type='text'
               value={Username}
-              placeholder={user.Username}
+              placeholder={user ? user.Username : ''}
               onChange={(e) => setUsername(e.target.value)}
               minLength='5'
               aria-describedby='usernameHelptext'
@@ -117,18 +117,18 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             <Form.Control
               type='email'
               value={Email}
-              placeholder={user.Email}
+              placeholder={user ? user.Email : ''}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor='Birthday'>
+            <Form.Label>
               Please enter your Birthday:
             </Form.Label>
             <Form.Control
               type='date'
               value={date}
-              placeholder={date}
+              // placeholder={date}
               onChange={(e) => setBirthday(e.target.value)}
               aria-describedby='birthdayHelptext'
             />
@@ -183,3 +183,4 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     </Row>
   )
 }
+ 

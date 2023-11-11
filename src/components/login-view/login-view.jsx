@@ -6,7 +6,8 @@ export const LoginView = ({ onLoggedIn }) => {
   // Username and Password in empty state
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  console.log('LoginView', username, password) // ??? Why is this not empty?
+  console.log('LoginView Username', username) // ??? Why is this not empty?
+  console.log('LoginView Password', password) // ??? Why is this not empty?
   const handleSubmit = (event) => {
     // this prevents the default form behavior, which is to relaod the whole page
     event.preventDefault()
@@ -23,7 +24,7 @@ export const LoginView = ({ onLoggedIn }) => {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => response.json()) // Transforms response into json object  to extract teh token
+      .then((response) => response.json())
       .then((data) => {
         console.log('Login data:', data)
         if (data.user) {
@@ -47,9 +48,9 @@ export const LoginView = ({ onLoggedIn }) => {
     <p>Please enter your name and password or signup:</p>
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId='formUsername'>
-        <Form.Label htmlFor='Username'>Username:</Form.Label>
+        <Form.Label>Username:</Form.Label>
         <Form.Control
-        id='Username'
+        // id='Username'
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
@@ -62,7 +63,7 @@ export const LoginView = ({ onLoggedIn }) => {
       <Form.Group controlId='formPassword'>
         <Form.Label>Password:</Form.Label>
         <Form.Control type="password"
-        id='Password'
+        // id='Password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
