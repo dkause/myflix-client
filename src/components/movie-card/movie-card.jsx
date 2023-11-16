@@ -1,34 +1,28 @@
 import PropTypes from 'prop-types'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { FavoritesButton } from '../favorite-button/favorite-button'
 
-export const MovieCard = ({ movie, onMovieClick }) => {
-  console.log('MovieCard props:', { movie, onMovieClick })
-  if (!movie) {
-    return null // or some other fallback UI
-  }
+export const MovieCard = ({ movie, user, setUser, token }) => {
+  console.log('movie-setUser', setUser)
+
   return (
-
-    <Card onClick={() => {
-      onMovieClick(movie)
-    }} className='mb-3'>
-      <Card.Img variant='top' src={movie.ImagePath} />
+      <Card className="mb-3">
+          <FavoritesButton setUser={setUser} movie={movie} user={user} token={token} />
+      <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
-        {/* <Button
-          onClick={() => {
-            onMovieClick(movie)
-          }}
-          >Klick to open
-        </Button> */}
+        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+          <Button>Open</Button>
+        </Link>
       </Card.Body>
     </Card>
   )
 }
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired
-  }),
-  onMovieClick: PropTypes.func.isRequired
+  movie: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired
 }
