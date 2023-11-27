@@ -27207,7 +27207,7 @@ const MainView = ()=>{
     _s();
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
-    const parseUser = JSON.parse(storedUser);
+    // const parseUser = JSON.parse(storedUser)
     // const [user, setUser] = useState(storedUser ? parseUser : null)
     const [token, setToken] = (0, _react.useState)(storedToken || null);
     // // const [movies, setMovies] = useState([])
@@ -48997,7 +48997,7 @@ var _propTypes = require("prop-types");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRedux = require("react-redux");
 var _s = $RefreshSig$();
-const FavoritesButton = ({ user, movie, setUser, token })=>{
+const FavoritesButton = ({ movie, setUser, token })=>{
     _s();
     const user = (0, _reactRedux.useSelector)((state)=>state.user);
     const dispatch = (0, _reactRedux.useDispatch)();

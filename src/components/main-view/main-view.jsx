@@ -16,7 +16,7 @@ import { setMovies } from '../../redux/reducers/movies'
 export const MainView = () => {
   const storedUser = localStorage.getItem('user')
   const storedToken = localStorage.getItem('token')
-  const parseUser = JSON.parse(storedUser)
+  // const parseUser = JSON.parse(storedUser)
   // const [user, setUser] = useState(storedUser ? parseUser : null)
   const [token, setToken] = useState(storedToken || null)
   // // const [movies, setMovies] = useState([])

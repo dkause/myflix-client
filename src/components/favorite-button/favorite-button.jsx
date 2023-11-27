@@ -2,7 +2,7 @@ import { PropTypes } from 'prop-types'
 import { Button } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 
-export const FavoritesButton = ({ user, movie, setUser, token }) => {
+export const FavoritesButton = ({ movie, setUser, token }) => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   console.log('FavoritesButton-user', user)
