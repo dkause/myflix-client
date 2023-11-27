@@ -1,43 +1,48 @@
-# Exercise 3.9 Deploy myFlix to netlifiy
-
+Exercise 3.9 Deploy myFlix to netlify 
+Info: User: Freddy, Password: Chicken
+FIXES:
+☐ FIXME: alert screen shows "failed"
+☐ FIXME: logout does not show SignUp, check localstorage
+********************************************************
 Todo:
   ✔ Merge Routing branch mit Mainbranch @started(23-11-16 17:26) @done(23-11-16 17:47) @lasted(21m39s)
-  ✔ zweiter Merge Versuch @done(23-11-16 17:47)
-  ☐ neuen Branch für Netlify erstellen @started(23-11-16 17:47)
+  ✔ zweiter Merge Versuch @done(23-11-16 17:47) @tag
+
+  ✔ neuen Branch für Netlify erstellen @started(23-11-16 17:47) @done(23-11-16 17:51) @lasted(4m5s)
+  ✔ Branch testen @started(23-11-16 20:20) @done(23-11-16 20:33) @lasted(13m46s)
+  FEATURES:
+  ☐ Apply a movie filter list to mainview
   ☐ Netlify Account erstellen
   ☐ Review my Projekt erstellen
     ☐ Main view
-      ☐ Returns ALL movies to the user (each movie item with an image, title, and description)
+      ✔ Returns ALL movies to the user (each movie item with an image, title, and description) @done(23-11-16 20:23)
       ☐ Filtering the list of movies with a “search” feature
-      ☐ Ability to select a movie for more details
-      ☐ Ability to log out
-      ☐ Ability to navigate to Profile view
-    ☐ Single Movie view
-      ☐ Returns data (description, genre, director, image) about a single movie to the user
-      ☐ Allows users to add a movie to their list of favorites
-    ☐ Login view
-      ☐ Allows users to log in with a username and password
-    ☐ Signup view
-      ☐ Allows new users to register (username, password, email, date of birth)
-    ☐ Profile view
-      ☐ Displays user registration details
-      ☐ Allows users to update their info (username, password, email, date of birth)
-      ☐ Displays favorite movies
-      ☐ Allows users to remove a movie from their list of favorites
-      ☐ Allows existing users to deregister   Single Movie view
-      ☐ Returns data (description, genre, director, image) about a single movie to the user
-      ☐ Allows users to add a movie to their list of favorites
-    ☐ Login view
-      ☐ Allows users to log in with a username and password
-    ☐ Signup view
-      ☐ Allows new users to register (username, password, email, date of birth)
-    ☐ Profile view
-      ☐ Displays user registration details
-      ☐ Allows users to update their info (username, password, email, date of birth)
-      ☐ Displays favorite movies
-      ☐ Allows users to remove a movie from their list of favorites
-      ☐ Allows existing users to deregister
-  ☐ Apply a movie filster list to mainview
+      ✔ Ability to select a movie for more details @done(23-11-16 20:22)
+      ✔ Ability to log out @done(23-11-16 20:31)
+      ✔ Ability to navigate to Profile view @done(23-11-16 20:23)
+    ✔ Single Movie view @done(23-11-16 20:31)
+      ✔ Returns data (description, genre, director, image) about a single movie to the user @done(23-11-16 20:23)
+      ✔ Allows users to add a movie to their list of favorites @done(23-11-16 20:30)
+    ✔ Login view @done(23-11-20 19:51)
+      ✔ Allows users to log in with a username and password @done(23-11-16 20:25)
+    ✔ Signup view @done(23-11-16 20:33)
+      ✔ Allows new users to register (username, password, email, date of birth) @done(23-11-20 19:50)
+    ✔ Profile view @done(23-11-20 19:51)
+      ✔ Displays user registration details @done(23-11-16 20:25)
+      ✔ Allows users to update their info (username, password, email, date of birth) @done(23-11-16 20:26)
+      ✔ Displays favorite movies @done(23-11-16 20:23)
+      ✔ Allows users to remove a movie from their list of favorites @done(23-11-16 20:23)
+      ✔ Allows existing users to deregister @done(23-11-16 20:32)
+    ✔ Login view @done(23-11-16 20:31)
+      ✔ Allows users to log in with a username and password @done(23-11-16 20:24)
+    ✔ Signup view @done(23-11-16 20:31)
+      ✔ Allows new users to register (username, password, email, date of birth) @done(23-11-16 20:31)
+    ✔ Profile view @done(23-11-16 20:31)
+      ✔ Displays user registration details @done(23-11-16 20:24)
+      ✔ Allows users to update their info (username, password, email, date of birth) @done(23-11-16 20:31)
+      ✔ Displays favorite movies @done(23-11-16 20:24)
+      ✔ Allows users to remove a movie from their list of favorites @done(23-11-16 20:24)
+      ✔ Allows existing users to deregister @done(23-11-16 20:31)
   ☐ Check and Update readme.md
   ☐ Test final app
   ☐ Push, create pull request and merge to main branch
@@ -45,3 +50,5 @@ Todo:
   ☐ Check if app is running on netlify
   ☐ Update readme.md with netlify link
   ☐ submit link to netlify app and git repo to my mentor
+
+Archive:

@@ -1,12 +1,12 @@
 import { PropTypes } from 'prop-types'
 import { Button } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const FavoritesButton = ({ user, movie, setUser, token }) => {
-  // const [user, setUser] = useState('')
-  console.log('user', user)
-  console.log('user.FavoriteMovies', user.FavoriteMovies)
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  console.log('FavoritesButton-user', user)
   const isMovieInFavorites = user.FavoriteMovies.includes(movie._id)
-  console.log('isMovieInFavorites', isMovieInFavorites)
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
       alert('Movie is already in favorites')

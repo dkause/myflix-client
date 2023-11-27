@@ -1,29 +1,34 @@
 # MyFlix-Client
 
-## MyFlix-Client is a front end app for displaying data from my movies api
+*myFlix* is build in REACT and user Express to connect via an api to a no sql mongodatabase.
+It uses node.js as a server - in short, it's based on the **MERN-STACK**.
 
-My Flix Client uses REACT to display data from movies api, the "R" from the MERN stack.
+[![MERN](https://skillicons.dev/icons?i=mongodb,express,react,nodejs)](https://skillicons.dev)
 
-Tools used:
+## User Stories
 
-- parcel using the MERN stack.
+- As a user, I want to be able to access information about movies so that I can learn more
+about movies I’ve watched or am interested in.
+- As a user, I want to be able to create a profile so I can save data about my favorite movies.
 
-Tools used:
+## Features
 
-- parcel
+The user can login and out, manipulate its data and delete its profile. Browse and filter movies and add them to his favorites list.
 
-Parcel throws this out:
+Works like a classic movie catalogue.
 
-@parcel/resolver-default: Auto installing polyfill for Node builtin module "process/"...
+## Design Choices
 
-  /Users/danielkause/.nvm/versions/node/v18.16.0/lib/node_modules/parcel/node_modules/react-error-overlay/lib/index.js:1:4450
-  > 1 | s[o]:process.cwd();if("string"!=typeof a)throw new TypeError("Arguments to path.resolve must be strings");a&&(e=a+"/"+e,t="/"===a.charAt(0))}return(t?"/":"")+(e=r(n(e.split("/"),(function(e){return!!e})),!t).join("/"))||"."},t.normalize=function(e){var a=t.isAbs
-  > |      ^^^^^^^ used here
+Since this is a tech demo project and due to time constricts, I decided to use placeholder images, some real, some fake text as content. Maybe I will add reasonable content later, to provide an even better UserExperience. Furthermore I used Bootstrap for UI Elements, with some CSS modifications for a better look - mainly margins in the logo. Its all written in Visual Studio Code.
 
-  📝 Learn more: <https://parceljs.org/features/node-emulation/#polyfilling-%26-excluding-builtin-node-modules>
+In general I like to ***KEEP THINGS SIMPLE STUPID***.
 
-✨ Built in 630ms
+### User Experience
 
-Build in less than second and it works.
+I put some focus on the profile form: it is prefilled with the user data. In further iterations I would like to make this more user friendly. By providing more context and validation of the user input.
 
-![Screenshot of index on local server](http://localhost:55141)
+[![Desgin](https://skillicons.dev/icons?i=html,scss,bootstrap,vscode)](https://skillicons.dev)
+
+## My Experience
+
+This was a demanding tasks for me provided me some usefull insights into Frontend Development techniques. As coming from UX Design Background I got deeper understanding of team needs, as REACT's "fragmented" approach demands precise communication between components and people.

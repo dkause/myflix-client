@@ -1,18 +1,17 @@
-/* eslint-disable react/prop-types */
-// TODO: Display a user's favorite movies as a list. For this you’ll need to filter the movies array with something like let favoriteMovies = movies.filter(m => user.FavoriteMovies.includes(m._id)). With this, favoriteMovies is just a regular array of movie objects which could, for example, be displayed as movie cards (the MovieCard components would need to be passed to the ProfileView component and rendered there);
 import { useState } from 'react'
 import { Col, Row, Form, Button } from 'react-bootstrap'
 import { MovieCard } from '../movie-card/movie-card'
+import PropTypes from 'prop-types'
 
 export const ProfileView = ({ user, token, movies, setUser }) => {
-  console.log('ProfileVIEW-user', user)
+  // console.log('ProfileVIEW-user.birthdate', user.Birthdate)
   const [Username, setUsername] = useState(user ? user.Username : null)
   const [Password, setPassword] = useState([])
   const [Email, setEmail] = useState(user ? user.Email : null)
   const [Birthday, setBirthday] = useState(user ? user.Birthday : null)
   // console.log('Birthday', user.Birthday)
   const date = user ? new Date(user.Birthday) : null
-  const shortBirthday = date ? date.toLocaleDateString('en-GB') : null
+  const shortBirthday = date ? date.toISOString().split('T')[0] : null
   console.log('shortbirthday', shortBirthday)
 
   const updateData = (event) => {
@@ -32,7 +31,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       }
     })
       .then((response) => {
-        console.log('profile', data)
+        // console.log('profile', data)
         console.log('profile-response', response)
         if (response.ok) {
           return response.json()
@@ -82,7 +81,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     <Row className='justify-content-md-center mt-3 p-5'>
       <Col>
         <h2>Update your information</h2>
-        <p>You can change your username, email and password.</p>
+        <p>You can change your username, email and password. We have prefilled these with your information.<br/> In order to update, you need to enter your current password.<br/>To change it, simply use a new one.</p>
         <Form onSubmit={updateData}>
           <Form.Group>
             <Form.Label>Username:</Form.Label>
@@ -108,8 +107,9 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
               onChange={(e) => setPassword(e.target.value)}
               aria-describedby='passwordHelptext'
             />
-            <Form.Text id='passwordHelptext'>
-              You password here, please.
+            <Form.Text id='passwordHelptext' ><p className='text-bg-warning mt-1 p-2 rounded'>
+              You MUST enter a password, the current for changing or a new for updating.
+            </p>
             </Form.Text>
           </Form.Group>
           <Form.Group controlId='Email'>
@@ -183,4 +183,15 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     </Row>
   )
 }
- 
+ProfileView.propTypes = {
+  user: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Birthday: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    FavoriteMovies: PropTypes.array.isRequired
+  }).isRequired,
+  token: PropTypes.string.isRequired,
+  movies: PropTypes.array.isRequired,
+  setUser: PropTypes.func.isRequired
+}

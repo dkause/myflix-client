@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
+import { useSelector } from 'react-redux'
 
-export const MovieView = ({ movies }) => {
+// export const MovieView = ({ movies }) => {
+export const MovieView = () => {
+  const movies = useSelector((state) => state.movies)
   // console.log('movies', movies)
   const { movieId } = useParams()
   // console.log('movie-view', movieId)
@@ -52,7 +55,7 @@ export const MovieView = ({ movies }) => {
 }
 
 MovieView.propTypes = {
-  movies: PropTypes.array.isRequired
+  movies: PropTypes.object.isRequired
   // movies: PropTypes.shape({
   //   ImagePath: PropTypes.string.isRequired,
   //   Title: PropTypes.string.isRequired,
