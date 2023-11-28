@@ -40841,7 +40841,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _favoriteButton = require("../favorite-button/favorite-button");
 const MovieCard = ({ movie, user, setUser, token })=>{
-    console.log("movie-setUser", setUser);
+    console.log("MovieCard is rendered, movie-setUser", setUser);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "mb-3",
         children: [
