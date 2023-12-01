@@ -43431,7 +43431,10 @@ var _propTypes = require("prop-types");
 var _reactBootstrap = require("react-bootstrap");
 const FavoritesButton = ({ user, movie, setUser, token })=>{
     // const [user, setUser] = useState('')
+    console.log("user", user);
+    console.log("user.FavoriteMovies", user.FavoriteMovies);
     const isMovieInFavorites = user.FavoriteMovies.includes(movie._id);
+    console.log("isMovieInFavorites", isMovieInFavorites);
     const addFavoriteMovie = ()=>{
         if (isMovieInFavorites) alert("Movie is already in favorites");
         else // Add the movie to the favorites list
@@ -43495,14 +43498,14 @@ const FavoritesButton = ({ user, movie, setUser, token })=>{
                     className: "bi bi-star-fill"
                 }, void 0, false, {
                     fileName: "src/components/favorite-button/favorite-button.jsx",
-                    lineNumber: 91,
+                    lineNumber: 94,
                     columnNumber: 13
                 }, undefined),
                 "Remove"
             ]
         }, void 0, true, {
             fileName: "src/components/favorite-button/favorite-button.jsx",
-            lineNumber: 90,
+            lineNumber: 93,
             columnNumber: 11
         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
             variant: "outline-success",
@@ -43512,14 +43515,14 @@ const FavoritesButton = ({ user, movie, setUser, token })=>{
                     className: "bi bi-star"
                 }, void 0, false, {
                     fileName: "src/components/favorite-button/favorite-button.jsx",
-                    lineNumber: 96,
+                    lineNumber: 99,
                     columnNumber: 13
                 }, undefined),
                 "ADD"
             ]
         }, void 0, true, {
             fileName: "src/components/favorite-button/favorite-button.jsx",
-            lineNumber: 95,
+            lineNumber: 98,
             columnNumber: 11
         }, undefined) : null
     }, void 0, false);
