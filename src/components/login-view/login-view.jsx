@@ -8,6 +8,8 @@ import { setUser } from '../../redux/reducers/user'
 export const LoginView = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const userState = useSelector(state => state.user)
+  console.log('userState in Login', userState)
   const dispatch = useDispatch()
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -32,7 +34,7 @@ export const LoginView = () => {
           localStorage.setItem('token', data.token)
 
           // onLoggedIn(data.user, data.token)
-          dispatch(setUser(data.user))
+          dispatch(setUser({ user: data.user, token: data.token }))
           // location.reload()
         } else {
           alert('No User found.')
@@ -59,7 +61,7 @@ export const LoginView = () => {
             aria-describedby='usernameHelptext'
           />
           <Form.Text style={{ display: 'none' }} id='usernamedHelptext'>
-            Your Name must be at least five characterslong. Special characters,
+            Your Name must be at least five characters long. Special characters,
             like underscores, spaces or emojis are not allowed.
           </Form.Text>
         </Form.Group>

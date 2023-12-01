@@ -1,18 +1,18 @@
 import { PropTypes } from 'prop-types'
 import { Button } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { setUser } from '../../redux/reducers/user'
 
-export const FavoritesButton = ({ movie, setUser, token }) => {
-  const user = useSelector(state => state.user);
-  const dispatch = useDispatch();
+export const FavoritesButton = ({ movie, setUser }) => {
+  const user = useSelector(state => state.user)
+  console.log('userState in Login', user)
+  const token = useSelector(state => state.token)
   console.log('FavoritesButton-user', user)
   const isMovieInFavorites = user.FavoriteMovies.includes(movie._id)
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
       alert('Movie is already in favorites')
     } else {
-      // Add the movie to the favorites list
-
       fetch(
         `https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie._id}`,
         {
@@ -33,7 +33,6 @@ export const FavoritesButton = ({ movie, setUser, token }) => {
             // You may want to update the user's favorite movies here
           } else {
             alert('Adding Failed!')
-            throw new Error('Adding Failed')
           }
         })
         .then((responseUser) => {

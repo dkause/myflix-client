@@ -8,7 +8,7 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
 
   return (
       <Card className="mb-3">
-          <FavoritesButton setUser={setUser} movie={movie} user={user} token={token} />
+          {/* <FavoritesButton setUser={setUser} movie={movie} user={user} token={token} /> */}
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>

@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setMovies } from '../../redux/reducers/movies'
+import { setUser } from '../../redux/reducers/user'
 
 export const MainView = () => {
   const storedUser = localStorage.getItem('user')
@@ -21,6 +22,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken || null)
   // // const [movies, setMovies] = useState([])
   const user = useSelector((state) => state.user)
+  console.log('user in main', user)
   const movies = useSelector((state) => state.movies)
   const dispatch = useDispatch()
 
@@ -42,14 +44,7 @@ export const MainView = () => {
   }, [])
   return (
     <BrowserRouter>
-      {/* <NavigationView
-        user={user}
-        onLoggedOut={() => {
-          setUser(null)
-          setToken(null)
-          localStorage.clear()
-        }}
-      /> */}
+   
       <NavigationView />
       <Routes>
         <Route
