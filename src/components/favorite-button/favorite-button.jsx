@@ -1,13 +1,7 @@
 import { PropTypes } from 'prop-types'
 import { Button } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
-import { setUser } from '../../redux/reducers/user'
 
-export const FavoritesButton = ({ movie, setUser }) => {
-  const user = useSelector(state => state.user)
-  console.log('userState in Login', user)
-  const token = useSelector(state => state.token)
-  console.log('FavoritesButton-user', user)
+export const FavoritesButton = ({ user, movie, setUser, token }) => {
   const isMovieInFavorites = user.FavoriteMovies.includes(movie._id)
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {

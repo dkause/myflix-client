@@ -2,15 +2,10 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
-import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../../redux/reducers/user'
 
-export const LoginView = () => {
+export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const userState = useSelector(state => state.user)
-  console.log('userState in Login', userState)
-  const dispatch = useDispatch()
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -33,8 +28,7 @@ export const LoginView = () => {
           localStorage.setItem('user', JSON.stringify(data.user))
           localStorage.setItem('token', data.token)
 
-          // onLoggedIn(data.user, data.token)
-          dispatch(setUser({ user: data.user, token: data.token }))
+          onLoggedIn(data.user, data.token)
           // location.reload()
         } else {
           alert('No User found.')

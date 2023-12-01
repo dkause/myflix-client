@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useLocation } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
@@ -7,18 +7,11 @@ import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../../redux/reducers/user'
 
-export const NavigationView = () => {
-  const user = useSelector((state) => state.user)
-  console.log('user in NavigatioView', user)
-  const dispatch = useDispatch()
+export const NavigationView = ({ user: userProp, onLoggedOut }) => {
+  console.log('user in NavigationView', userProp)
   const location = useLocation()
-  const [currentUser, setCurrentUser] = useState(user);
-  useEffect(() => {
-    setCurrentUser(user)
-  }, [user]);
+  const [user, setUser] = useState(userProp)
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container><Row>
@@ -31,8 +24,7 @@ export const NavigationView = () => {
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
       <Nav className='me-auto'>
-        {(currentUser === null || user === undefined)
-          ? (
+        {!user && (
           <>
             {location.pathname === '/signup' && (
               <Nav.Link as={Link} to='/login'>
@@ -49,8 +41,8 @@ export const NavigationView = () => {
               </Nav.Link>
             )}
           </>
-            )
-          : (
+        )}
+          {user && (
           <>
             <Nav.Link as={Link} to='/'>
               <i className='bi bi-film'></i>All Movies
@@ -58,11 +50,11 @@ export const NavigationView = () => {
             <Nav.Link as={Link} to='/profile'>
               <i className='bi bi-person'></i>My Profile
             </Nav.Link>
-            <Nav.Link as={Link} to='/' onClick={ () => dispatch(setUser(null)) }>
+            <Nav.Link as={Link} to='/' onClick={onLoggedOut}>
               <i className='bi bi-escape'></i>Logout
             </Nav.Link>
           </>
-            )}
+          )}
       </Nav>
     </Navbar.Collapse>
   </Col>

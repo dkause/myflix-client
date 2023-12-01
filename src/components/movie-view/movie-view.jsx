@@ -5,16 +5,10 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
-import { useSelector } from 'react-redux'
 
-// export const MovieView = ({ movies }) => {
-export const MovieView = () => {
-  const movies = useSelector((state) => state.movies)
-  // console.log('movies', movies)
+export const MovieView = ({ movies }) => {
   const { movieId } = useParams()
-  // console.log('movie-view', movieId)
   const movie = movies.find((b) => b._id === movieId)
-  // console.log('movie', movie)
   if (!movie) {
     // Handle the case where the movie is not found or undefined
     return <div>Movie not found</div>

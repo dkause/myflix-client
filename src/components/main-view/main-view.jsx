@@ -10,21 +10,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { setMovies } from '../../redux/reducers/movies'
-import { setUser } from '../../redux/reducers/user'
-
 export const MainView = () => {
   const storedUser = localStorage.getItem('user')
   const storedToken = localStorage.getItem('token')
-  // const parseUser = JSON.parse(storedUser)
-  // const [user, setUser] = useState(storedUser ? parseUser : null)
+  const parseUser = JSON.parse(storedUser)
+  const [user, setUser] = useState(storedUser ? parseUser : null)
   const [token, setToken] = useState(storedToken || null)
-  // // const [movies, setMovies] = useState([])
-  const user = useSelector((state) => state.user)
-  console.log('user in main', user)
-  const movies = useSelector((state) => state.movies)
-  const dispatch = useDispatch()
+  const [movies, setMovies] = useState([])
 
   useEffect(() => {
     if (!token) {
@@ -39,13 +31,19 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(setMovies(data))
+        setMovies(data)
       })
   }, [])
   return (
     <BrowserRouter>
-   
-      <NavigationView />
+      <NavigationView
+        user={user}
+        onLoggedOut={() => {
+          setUser(null)
+          setToken(null)
+          localStorage.clear()
+        }}
+      />
       <Routes>
         <Route
           path='/signup'
@@ -83,13 +81,12 @@ export const MainView = () => {
         <Route
           path='/profile'
           element={
-            <ProfileView />
-            // <ProfileView
-            //   user={user}
-            //   token={token}
-            //   movies={movies}
-            //   setUser={setUser}
-            // />
+            <ProfileView
+              user={user}
+              token={token}
+              movies={movies}
+              setUser={setUser}
+            />
           }
         />
         <Route
@@ -102,7 +99,6 @@ export const MainView = () => {
                 <Col>The list is empty!</Col>
               ) : (
                 <>
-
                   {movies.map((movie) => (
                     <Col
                       key={movie._id}
@@ -111,13 +107,13 @@ export const MainView = () => {
                       sm={6}
                       className='d-flex align-items-stretch'
                     >
-                      <MovieCard movie={movie}/>
-                        {/* // movies={movies}
-                      //   movie={movie}
-                      //   user={user}
-                      //   setUser={setUser}
-                      //   token={token}
-                      // /> */}
+                      <MovieCard
+                        // movies={movies}
+                        movie={movie}
+                        user={user}
+                        setUser={setUser}
+                        token={token}
+                      />
                     </Col>
                   ))}
                 </>
@@ -134,8 +130,7 @@ export const MainView = () => {
               ) : movies.length === 0 ? (
                 <Col>The list is empty!</Col>
               ) : (
-                // <MovieView movies={movies}></MovieView>
-                <MovieView />
+                <MovieView movies={movies}></MovieView>
               )}
             </Row>
           }
