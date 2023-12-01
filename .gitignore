@@ -4,3 +4,4 @@ node_modules
 dist
 src/components/movie-card/moviw-carddd.jsx
 TODO
+src/dist

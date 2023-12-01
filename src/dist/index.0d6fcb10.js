@@ -50138,6 +50138,6 @@ const store = (0, _toolkit.configureStore)({
     }
 });
 
-},{"@reduxjs/toolkit":"lL1Ef","./reducers/movies":"l0qwl","@parcel/transformer-js/src/esmodule-helpers.js":"2u7Fa","./reducers/user":"e6tdF"}]},["gBZ7N","etCBI","d8Dch"], "d8Dch", "parcelRequirea06b")
+},{"@reduxjs/toolkit":"lL1Ef","./reducers/movies":"l0qwl","./reducers/user":"e6tdF","@parcel/transformer-js/src/esmodule-helpers.js":"2u7Fa"}]},["gBZ7N","etCBI","d8Dch"], "d8Dch", "parcelRequirea06b")
 
 //# sourceMappingURL=index.0d6fcb10.js.map
