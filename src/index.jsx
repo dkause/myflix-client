@@ -4,13 +4,17 @@ import { MainView } from './components/main-view/main-view'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.scss'
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
   return (
+    <Provider store={store}>
       <Container className='mt-5'>
         <MainView />
       </Container>
+    </Provider>
   )
 }
 

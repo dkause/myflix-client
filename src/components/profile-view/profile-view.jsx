@@ -193,5 +193,6 @@ ProfileView.propTypes = {
   }).isRequired,
   token: PropTypes.string.isRequired,
   movies: PropTypes.array.isRequired,
+  // movies: PropTypes.object.isRequired,
   setUser: PropTypes.func.isRequired
 }

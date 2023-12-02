@@ -27194,6 +27194,10 @@ var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const handleSearch = (searchTerm)=>{
+        const results = movies.filter((movie)=>movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        setFilteredMovies(results);
+    };
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
     const parseUser = JSON.parse(storedUser);
@@ -27223,7 +27227,7 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 39,
+                lineNumber: 47,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
@@ -27241,7 +27245,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 48,
+                        lineNumber: 56,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27262,7 +27266,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 62,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27275,7 +27279,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 81,
+                        lineNumber: 89,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27305,7 +27309,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 92,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27323,19 +27327,19 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 124,
+                        lineNumber: 132,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 47,
+                lineNumber: 55,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 38,
+        lineNumber: 46,
         columnNumber: 5
     }, undefined);
 };
@@ -27442,19 +27446,19 @@ const NavigationView = ({ user: userProp, onLoggedOut })=>{
                                                                 className: "bi bi-box-arrow-in-left"
                                                             }, void 0, false, {
                                                                 fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                                lineNumber: 32,
+                                                                lineNumber: 33,
                                                                 columnNumber: 19
                                                             }, undefined),
                                                             "Login"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                        lineNumber: 31,
+                                                        lineNumber: 32,
                                                         columnNumber: 17
                                                     }, undefined)
                                                 }, void 0, false, {
                                                     fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                    lineNumber: 30,
+                                                    lineNumber: 31,
                                                     columnNumber: 15
                                                 }, undefined),
                                                 location.pathname === "/login" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
@@ -27467,19 +27471,19 @@ const NavigationView = ({ user: userProp, onLoggedOut })=>{
                                                                 className: "bi bi-person-fill-add"
                                                             }, void 0, false, {
                                                                 fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                                lineNumber: 39,
+                                                                lineNumber: 40,
                                                                 columnNumber: 19
                                                             }, undefined),
                                                             " SignUp"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                        lineNumber: 38,
+                                                        lineNumber: 39,
                                                         columnNumber: 17
                                                     }, undefined)
                                                 }, void 0, false, {
                                                     fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                    lineNumber: 37,
+                                                    lineNumber: 38,
                                                     columnNumber: 15
                                                 }, undefined)
                                             ]
@@ -27494,14 +27498,14 @@ const NavigationView = ({ user: userProp, onLoggedOut })=>{
                                                             className: "bi bi-film"
                                                         }, void 0, false, {
                                                             fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                            lineNumber: 48,
+                                                            lineNumber: 49,
                                                             columnNumber: 15
                                                         }, undefined),
                                                         "All Movies"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                    lineNumber: 47,
+                                                    lineNumber: 48,
                                                     columnNumber: 13
                                                 }, undefined),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
@@ -27512,14 +27516,14 @@ const NavigationView = ({ user: userProp, onLoggedOut })=>{
                                                             className: "bi bi-person"
                                                         }, void 0, false, {
                                                             fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                            lineNumber: 51,
+                                                            lineNumber: 52,
                                                             columnNumber: 15
                                                         }, undefined),
                                                         "My Profile"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                    lineNumber: 50,
+                                                    lineNumber: 51,
                                                     columnNumber: 13
                                                 }, undefined),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
@@ -27531,14 +27535,14 @@ const NavigationView = ({ user: userProp, onLoggedOut })=>{
                                                             className: "bi bi-escape"
                                                         }, void 0, false, {
                                                             fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                            lineNumber: 54,
+                                                            lineNumber: 55,
                                                             columnNumber: 15
                                                         }, undefined),
                                                         "Logout"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/navigation-view/navigation-view.jsx",
-                                                    lineNumber: 53,
+                                                    lineNumber: 54,
                                                     columnNumber: 13
                                                 }, undefined)
                                             ]
@@ -27546,7 +27550,7 @@ const NavigationView = ({ user: userProp, onLoggedOut })=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/navigation-view/navigation-view.jsx",
-                                    lineNumber: 26,
+                                    lineNumber: 27,
                                     columnNumber: 7
                                 }, undefined)
                             }, void 0, false, {

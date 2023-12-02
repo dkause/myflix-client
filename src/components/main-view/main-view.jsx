@@ -9,6 +9,8 @@ import { ProfileView } from '../profile-view/profile-view'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { setMovies } from '../../redux/reducers/movies'
 
 export const MainView = () => {
   const storedUser = localStorage.getItem('user')
@@ -16,7 +18,11 @@ export const MainView = () => {
   const parseUser = JSON.parse(storedUser)
   const [user, setUser] = useState(storedUser ? parseUser : null)
   const [token, setToken] = useState(storedToken || null)
-  const [movies, setMovies] = useState([])
+  const movies = useSelector((state) => state.movies)
+  console.log('Movies aus dem Store in MainView', movies)
+  const dispatch = useDispatch()
+  // const [movies, setMovies] = useState([])
+  // console.log('storedToken', storedToken)
 
   useEffect(() => {
     if (!token) {
@@ -29,9 +35,18 @@ export const MainView = () => {
         Authorization: `Bearer ${token}`
       }
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        return response.json()
+      })
       .then((data) => {
-        setMovies(data)
+        console.log('Daten von der API (data):', data)
+        dispatch(setMovies(data))
+      })
+      .catch((error) => {
+        console.error('Ein Fehler ist aufgetreten:', error)
       })
   }, [])
   return (
@@ -99,6 +114,7 @@ export const MainView = () => {
                 <Col>The list is empty!</Col>
               ) : (
                 <>
+                  if (Array.isArray(movies))
                   {movies.map((movie) => (
                     <Col
                       key={movie._id}
@@ -116,6 +132,9 @@ export const MainView = () => {
                       />
                     </Col>
                   ))}
+           else {
+            console.error('movies ist kein array', movies)
+          }
                 </>
               )}
             </Row>
@@ -130,7 +149,8 @@ export const MainView = () => {
               ) : movies.length === 0 ? (
                 <Col>The list is empty!</Col>
               ) : (
-                <MovieView movies={movies}></MovieView>
+
+                <MovieView />
               )}
             </Row>
           }
