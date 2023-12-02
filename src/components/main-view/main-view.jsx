@@ -114,7 +114,6 @@ export const MainView = () => {
                 <Col>The list is empty!</Col>
               ) : (
                 <>
-                  if (Array.isArray(movies))
                   {movies.map((movie) => (
                     <Col
                       key={movie._id}
@@ -132,9 +131,7 @@ export const MainView = () => {
                       />
                     </Col>
                   ))}
-           else {
-            console.error('movies ist kein array', movies)
-          }
+
                 </>
               )}
             </Row>

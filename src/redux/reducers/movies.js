@@ -5,7 +5,7 @@ const moviesSlice = createSlice({
   initialState: [], // leeres Array
   reducers: {
     setMovies: (state, action) => { // speichert die Liste der Filme von der API
-      state.movies = action.payload
+      return action.payload
     }
   }
 })
