@@ -2,6 +2,8 @@ import { PropTypes } from 'prop-types'
 import { Button } from 'react-bootstrap'
 
 export const FavoritesButton = ({ user, movie, setUser, token }) => {
+  console.log('FavoriteButton is renderd: setUser', setUser)
+  console.log('Here should be user.Favorites', user.FavoriteMovies)
   const isMovieInFavorites = user.FavoriteMovies.includes(movie._id)
   const addFavoriteMovie = () => {
     if (isMovieInFavorites) {
@@ -19,25 +21,20 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
         }
       )
         .then((response) => {
-          console.log('Response', response)
           if (response.ok) {
             window.location.reload()
             alert('Movie added to favorites')
             return response.json()
-            // You may want to update the user's favorite movies here
           } else {
             alert('Adding Failed!')
           }
         })
         .then((responseUser) => {
-          console.log('responseUser', responseUser)
           if (responseUser) {
             localStorage.setItem('user', JSON.stringify(responseUser))
-            console.log('Sucessfully added', responseUser.FavoriteMovies)
           }
           setUser(responseUser)
         })
-        .then(console.log('profileView', user))
         .then((user) => setUser(user))
         .catch((error) => {
           alert(error)
@@ -46,7 +43,6 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
   }
 
   const removeFavoriteMovie = () => {
-    console.log('Called remove from api')
     fetch(
       `https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie._id}`,
       {
@@ -69,7 +65,6 @@ export const FavoritesButton = ({ user, movie, setUser, token }) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user))
           setUser(user)
-          console.log('Sucessfully deleted', user.FavoriteMovies)
         }
       })
       .catch((error) => {

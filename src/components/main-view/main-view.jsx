@@ -18,15 +18,17 @@ export const MainView = () => {
   const parseUser = JSON.parse(storedUser)
   const [user, setUser] = useState(storedUser ? parseUser : null)
   const [token, setToken] = useState(storedToken || null)
-  const movies = useSelector((state) => state.movies)
-  console.log('Movies aus dem Store in MainView', movies)
+  const movies = useSelector((state) => state.movies.list)
+  const filter = useSelector((state) => state.movies.filter)
+    .trim()
+    .toLowerCase()
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(filter)
+  )
   const dispatch = useDispatch()
-  // const [movies, setMovies] = useState([])
-  // console.log('storedToken', storedToken)
 
   useEffect(() => {
     if (!token) {
-      // Checks if there is a token
       return
     }
     fetch('https://movie-api-5rhq.onrender.com/movies', {
@@ -114,13 +116,13 @@ export const MainView = () => {
                 <Col>The list is empty!</Col>
               ) : (
                 <>
-                  {movies.map((movie) => (
+                  {filteredMovies.map((movie) => (
                     <Col
-                      key={movie._id}
-                      lg={3}
-                      md={4}
-                      sm={6}
-                      className='d-flex align-items-stretch'
+                    key={movie._id}
+                    lg={3}
+                    md={4}
+                    sm={6}
+                    className='d-flex align-items-stretch'
                     >
                       <MovieCard
                         // movies={movies}
@@ -128,7 +130,7 @@ export const MainView = () => {
                         user={user}
                         setUser={setUser}
                         token={token}
-                      />
+                        />
                     </Col>
                   ))}
 

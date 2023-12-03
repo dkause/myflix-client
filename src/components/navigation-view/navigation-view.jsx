@@ -7,9 +7,9 @@ import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { MoviesFilter } from '../movies-filter/movies-filter'
 
 export const NavigationView = ({ user: userProp, onLoggedOut }) => {
-  console.log('user in NavigationView', userProp)
   const location = useLocation()
   const [user, setUser] = useState(userProp)
   return (
@@ -45,6 +45,7 @@ export const NavigationView = ({ user: userProp, onLoggedOut }) => {
         )}
           {user && (
           <>
+            <Nav><div className='searchIcon'><i className='bi bi-search'></i></div><MoviesFilter /></Nav>
             <Nav.Link as={Link} to='/'>
               <i className='bi bi-film'></i>All Movies
             </Nav.Link>
