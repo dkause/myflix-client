@@ -1,6 +1,6 @@
 # MyFlix-Client
 
-*myFlix* is build in REACT and user Express to connect via an api to a no sql mongodatabase.
+*myFlix* is build in REACT and uses Express to connect via an api to a no sql mongodatabase.
 It uses node.js as a server - in short, it's based on the **MERN-STACK**.
 
 [![MERN](https://skillicons.dev/icons?i=mongodb,express,react,nodejs)](https://skillicons.dev)
@@ -19,7 +19,7 @@ Works like a classic movie catalogue.
 
 ## Design Choices
 
-Since this is a tech demo project and due to time constricts, I decided to use placeholder images, some real, some fake text as content. Maybe I will add reasonable content later, to provide an even better UserExperience. Furthermore I used Bootstrap for UI Elements, with some CSS modifications for a better look - mainly margins in the logo. Its all written in Visual Studio Code.
+Since this is a tech demo project and due to time constricts, I decided to use placeholder images, some real, some fake text as content. Maybe I will add reasonable content later, to provide a better UserExperience. Furthermore I used Bootstrap for UI Elements, with some CSS modifications for a better look - mainly margins in the logo. Its all written in Visual Studio Code.
 
 In general I like to ***KEEP THINGS SIMPLE STUPID***.
 
